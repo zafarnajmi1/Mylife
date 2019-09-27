@@ -1,0 +1,544 @@
+/*
+ Localizable.strings
+ SocialMedia
+ 
+ Created by My Technology on 28/09/2018.
+ Copyright © 2018 My Technology. All rights reserved.
+ */
+
+//"Sign In" = "Sign In";
+//"Enter Email"  = "Enter Email";
+//"Email / Phone Number" = "Email / Phone Number";
+//"Password" = "Password";
+//"Login" = "Login";
+//"Create New Account. Register?" = "Create New Account. Register?";
+//"Forgot Password?" = "Forgot Password?";
+
+//Login
+//"Sign In" = "تسجيل الدخول";
+//"Enter Email"  = "أدخل البريد الإلكتروني";
+//"Email/Phone Number" = "البريد الإلكتروني / رقم الهاتف";
+//"Password" = "كلمه السر";
+//"Login" = "تسجيل الدخول";
+//"Create New Account" = "انشاء حساب جديد. تسجيل؟";
+//"Forgot Password?" = "هل نسيت كلمة المرور؟";
+//
+////Sign Up
+//"Register" = "تسجيل";
+//"Name" = "اسم";
+//"Email" = "البريد الإلكتروني";
+//"Phone" = "هاتف";
+//"Password" = "كلمه السر";
+//"Confirm Password" = "تأكيد كلمة المرور";
+//"Date of Birth" = "تاريخ الولادة";
+//"Date" = "تاريخ";
+//"Month" = "شهر";
+//"Year" = "عام";
+//"Gender" = "جنس";
+//"Male" = "الذكر";
+//"Female" = "إناثا";
+//"Already Have Account?" = "هل لديك حساب بالفعل؟";
+//
+////Forgot Password
+//"Forgot Your Password?" = "نسيت رقمك السري";
+//"Enter your email below to receive your reset password instruction" = "أدخل بريدك الإلكتروني أدناه لتلقي تعليمات إعادة تعيين كلمة المرور الخاصة بك";
+//"SEND" = "إرسال";
+
+
+"Sign In" = "Sign In";
+"Enter Email"  = "Enter Email";
+"Email/Phone Number" = "Email/Phone Number";
+"Password" = "Password";
+"Login" = "Login";
+"Create New Account" = "Create New Account";
+"Forgot Password?" = "Forgot Password?";
+
+//Sign Up
+"Register" = "Register";
+"Name" = "Name";
+"Email" = "Email";
+"Phone" = "Phone";
+"Password" = "Password";
+"Confirm Password" = "Confirm Password";
+"Date of Birth" = "Date of Birth";
+"Date" = "Date";
+"Month" = "Month";
+"Year" = "Year";
+"Gender" = "Gender";
+"Male" = "Male";
+"Female" = "Female";
+"male" = "male";
+"female" = "female";
+"Already Have Account?" = "Already Have Account?";
+
+//Forgot Password
+"Forgot Your Password?" = "Forgot Your Password?";
+"Enter your email below to receive your reset password instruction" = "Enter your email below to receive your reset password instruction";
+"SEND" = "SEND";
+
+
+
+//NewsFeed
+"You" = "You";
+"Stories" = "Stories";
+"What's On Your Mind" = "What's On Your Mind";
+"Whats on your mind?" = "Whats on your mind?";
+//Notifications
+
+"weeks ago" = "weeks ago";
+
+//Friends
+
+"No Friend requests found" = "No Friend requests found";
+"Pull to refresh" = "Pull to refresh";
+"Are you sure! you want to report this post" = "Are you sure! you want to report this post";
+" Like" = " Like";
+"No" = "No";
+"Alter" = "Alter";
+"Like" = "Like";
+" Comment" = " Comment";
+" Share" = " Share";
+
+"Selection Option" = "Selection Option";
+"Share with everyone" = "Share with everyone";
+"Share with friends" = "Share with friends";
+"Share on my timeline" = "Share on my timeline";
+"Do you really want to share this post on your timeline?" = "Do you really want to share this post on your timeline?";
+"Cancel" = "Cancel";
+"Do you really want to share this post with your friends?" = "Do you really want to share this post with your friends?";
+"Do you really want to share this post on your timeline?" = "Do you really want to share this post on your timeline?";
+"Ok" = "Ok";
+
+"Do you really want to share this post as public post?" = "Do you really want to share this post as public post?";
+
+"Share Post" = "Share Post";
+"Schedule Sharing" = "Schedule Sharing";
+"Do you want to schedule this share?" = "Do you want to schedule this share?";
+"Yes" = "Yes";
+"Do you really want to block this contact?" = "Do you really want to block this contact?";
+"Schedule Post" = "Schedule Post";
+"NO! JUST SHARE IT NOW" = "NO! JUST SHARE IT NOW";
+
+"Pick from Camera" = "Pick from Camera";
+"Pick from Gallery" = "Pick from Gallery";
+
+
+//Slide In
+"My Profile" = "My Profile";
+"Contacts" = "Contacts";
+"My Schedules" = "My Schedules";
+"Saved Stories" = "Saved Stories";
+"Sent Requests" = "Sent Requests";
+"App Settings" = "App Settings";
+"Help" = "Help";
+"Log Out" = "Log Out";
+
+//Profile
+"Profile" = "Profile";
+"Followers" = "Followers";
+"following" = "following";
+"Conversations" = "Conversations";
+"Delete" = "Delete";
+"DELETE" = "DELETE";
+"My Life" = "My Life";
+
+//All Friends
+"All Friends" = "All Friends";
+"No Friends found, Pull to refresh" = "No Friends found, Pull to refresh";
+"UN FRIEND" = "UN FRIEND";
+
+
+//Post Details
+
+"Post Details" = "Post Details";
+"Contacts" = "Contacts";
+"Import Contacts" = "Import Contacts";
+"UnSelect All" = "UnSelect All";
+"Select All" = "Select All";
+"Export Contacts" = "Export Contacts";
+
+//AboutVC
+"Birthday" = "Birthday";
+"Gender" = "Gender";
+"Relationship Status" = "Relationship Status";
+"Failed to Communicate with Server or Request is taking too much time! Please check your internet connection or wait for server to respond." = "Failed to Communicate with Server or Request is taking too much time! Please check your internet connection or wait for server to respond.";
+"User Info" = "User Info";
+"Edit" = "Edit";
+
+
+"Documents" = "Documents";
+"Saved Stories" = "Saved Stories";
+
+"Network Time Out, Please Try Again." = "Network Time Out, Please Try Again.";
+"No saved stories found" = "No saved stories found";
+"Pull to refresh" = "Pull to refresh";
+
+//Sent Request
+"Sent Request" = "Sent Request";
+"No sent request found" = "No sent request found";
+"CANCEL REQUEST" = "CANCEL REQUEST";
+"Cancel Request" = "Cancel Request";
+"Are you sure you want to cancel this request?" = "Are you sure you want to cancel this request?";
+"OK" = "OK";
+"single" = "single";
+
+//App setting
+"Friend Request" = "Friend Request";
+"Request Accepted" = "Request Accepted";
+"Post Like" = "Post Like";
+"Post Comment" = "Post Comment";
+"Post Share" = "Post Share";
+"App Language" = "App Language";
+"English" = "English";
+"Arabic" = "Arabic";
+"Reset Your Password?" = "Reset Your Password?";
+"App Settings" = "App Settings";
+"Get Notification For" = "Get Notification For";
+
+"My life is an amazing social media application for people who love to celebrate their life in fun and collaboration. Have unique experience of getting friends and people and enjoy the aspects of a better social world. We provide scheduling your friends birthday’s also your own posts." = "My life is an amazing social media application for people who love to celebrate their life in fun and collaboration. Have unique experience of getting friends and people and enjoy the aspects of a better social world. We provide scheduling your friends birthday’s also your own posts.";
+"Leave us a message" = "Leave us a message";
+"SEND" = "SEND";
+
+
+"DELETE" = "DELETE";
+"EDIT" = "EDIT";
+"VIEW FILE" = "VIEW FILE";
+"Documents" = "Documents";
+"VIDEOS" = "VIDEOS";
+"Videos" = "Videos";
+
+
+"PHOTOS" = "PHOTOS";
+"Photos" = "Photos";
+"All POSTS" = "All POSTS";
+"PEOPLE" = "PEOPLE";
+"Search Here" = "Search Here";
+
+"No result found" = "No result found";
+"Try something else:)" = "Try something else:)";
+"Are you sure you want to remove this post?" = "Are you sure you want to remove this post?";
+"Alert" = "Alert";
+
+//Chat
+"You have no new message" = "You have no new message";
+"You have no new conversation" = "You have no new conversation";
+
+
+"Delete Notification" = "Delete Notification";
+"Are you sure you want to delete this notification?" = "Are you sure you want to delete this notification?";
+"Clear Notification" = "Clear Notification";
+"Are you sure you want to Clear this notification?" = "Are you sure you want to Clear this notification?";
+
+"Group Members" = "Group Members";
+"Please specify group name" = "Please specify group name";
+"Please select atleast one group member" = "Please select atleast one group member";
+"Group Name" = "Group Name";
+"Create Group" = "Create Group";
+
+
+"Write a comment..." = "Write a comment...";
+"Replies" = "Replies";
+"Loading..." = "Loading...";
+"Error" = "Error";
+"Comments" = "Comments";
+"Search text is empty." = "Search text is empty.";
+"Group Chat" = "Group Chat";
+
+//Time Stamp
+"Last year" = "Last year";
+"months ago" = "months ago";
+"1 month ago" = "1 month ago";
+"Last month" = "Last month";
+"1 week ago" = "1 week ago";
+"Last week" = "Last week";
+"days ago" = "days ago";
+"1 day ago" = "1 day ago";
+"Yesterday" = "Yesterday";
+"hours ago" = "hours ago";
+"1 hour ago" = "1 hour ago";
+"An hour ago" = "An hour ago";
+"minutes ago" = "minutes ago";
+"1 minute ago" = "1 minute ago";
+"A minute ago" = "A minute ago";
+"seconds ago" = "seconds ago";
+"Just now" = "Just now";
+
+
+//Write Post
+"Write Post" = "Write Post";
+"Public" = "Public";
+"Friends only" = "Friends only";
+"On my timeline" = "On my timeline";
+"Post" = "Post";
+"Video" = "Video";
+"Feelings" = "Feelings";
+"Check in" = "Check in";
+"Tag Friends" = "Tag Friends";
+"Schedule Post" = "Schedule Post";
+"Schedule Birthday" = "Schedule Birthday";
+"No Notifications found" = "No Notifications found";
+"Select Video From Gallery" = "Select Video From Gallery";
+"Open Video Camera" = "Open Video Camera";
+"Check In" = "Check In";
+"Get Places" = "Get Places";
+//Tag Friends
+"TAG" = "TAG";
+"UN TAG" = "UN TAG";
+"DONE" = "DONE";
+"Done" = "Done";
+"Friends" = "Friends";
+
+"Select Photo" = "Select Photo";
+"Select Video" = "Select Video";
+"Select Document" = "Select Document";
+
+
+//Add Document
+"Select Photo" = "Select Photo";
+"Select Video" = "Select Video";
+"Select Document" = "Select Document";
+"Select a document" = "Select a document";
+"Privacy" = "Privacy";
+"Public" = "Public";
+"Private" = "Private";
+"Add Document" = "Add Document";
+"File Name Required" = "File Name Required";
+"Edit Document" = "Edit Document";
+"please write what's on your mind" = "please write what's on your mind";
+"No account select for import" = "No account select for import";
+"Contacts are imported successfully" = "Contacts are imported successfully";
+"Duplicate Contact Found" = "Duplicate Contact Found";
+"Contacts Exports Successfully" = "Contacts Exports Successfully";
+"Scheduled Posts" = "Scheduled Posts";
+
+"Sort Scheduled Posts" = "Sort Scheduled Posts";
+"SORT" = "SORT";
+"REMOVE POST" = "REMOVE POST";
+"Do you really want to remove this post?" = "Do you really want to remove this post?";
+"No Scheduled post found" = "No Scheduled post found";
+"Pull to refresh :)" = "Pull to refresh :)";
+
+"Old To New" = "Old To New";
+"New To Old" = "New To Old";
+"Watch All" = "Watch All";
+//"Following Now" = "Following Now";
+"Successfully Followed" = "Successfully Followed";
+"Successfully Un-Followed" = "Successfully Un-Followed";
+"About" = "About";
+"Type Comment..." = "Type Comment...";
+"Followers " = "Followers ";
+"My Followings " = "My Followings ";
+"Reply" = "Reply";
+"Successfully Delete" = "Successfully Delete";
+"Successfully Clear" = "Successfully Clear";
+"Password should be more than 6 characters" = "Password should be more than 6 characters";
+"Done" = "Done";
+"Please Enter Your Question" = "Please Enter Your Question";
+"Please Enter Valid Email Address" = "Please Enter Valid Email Address";
+"Please Enter Email Address" = "Please Enter Email Address";
+"Please Enter Your Name" = "Please Enter Your Name";
+"Thankyou for contacting us, we'll get back to you soon!" = "Thankyou for contacting us, we'll get back to you soon!";
+"Success" = "Success";
+"Your query" = "Your query";
+"No friend found" = "No friend found";
+
+"engaged" = "engaged";
+"married" = "married";
+"widowed" = "widowed";
+"seperated" = "seperated";
+"divorced" = "divorced";
+
+//Saved Stories
+"Remove Story" = "Remove Story";
+"Are you sure you want to remove this story?" = "Are you sure you want to remove this story?";
+"Successfully Deleted" = "Successfully Deleted";
+"Edit Comment" = "Edit Comment";
+"Add Freind" = "Add Freind";
+"Unfriend" = "Unfriend";
+"No Contact found. Please Go to Settings and allow contacts in privacy settings" = "No Contact found. Please Go to Settings and allow contacts in privacy settings";
+"Saved!" = "Saved!";
+"Picture has been saved to your photos" = "Picture has been saved to your photos";
+"Successfully Canceled" = "Successfully Canceled";
+
+"New Password" = "New Password";
+"Confirm Password" = "Confirm Password";
+"Old Password" = "Old Password";
+"Reset Password" = "Reset Password";
+"Reset Your Password" = "Reset Your Password";
+"Enter your old, new and confirm new password" = "Enter your old, new and confirm new password";
+"Please enter old password" = "Please enter old password";
+"Old password require minimum of 6 characters" = "Old password require minimum of 6 characters";
+"Please enter new password" = "Please enter new password";
+"New password require minimum of 6 characters" = "New password require minimum of 6 characters";
+"Please enter confirm password" = "Please enter confirm password";
+"Confirm password require minimum of 6 characters" = "Confirm password require minimum of 6 characters";
+"Password not match" = "Password not match";
+"Success" = "Success";
+
+"Please Enter Name" = "Please Enter Name";
+"Please enter email" = "Please enter email";
+"Email is not valid" = "Email is not valid";
+"Please enter phone number" = "Please enter phone number";
+"Phone number, Minimum 10 Characters required" = "Phone number, Minimum 10 Characters required";
+"Phone number, should not be greater then 15 Characters" = "Phone number, should not be greater then 15 Characters";
+"Phone number is not valid" = "Phone number is not valid";
+"Please enter password" = "Please enter password";
+"Password require minimum of 6 characters" = "Password require minimum of 6 characters";
+"Please enter confirm password" = "Please enter confirm password";
+"Confirm Password, Minimum 6 Characters required" = "Confirm Password, Minimum 6 Characters required";
+"Password not match" = "Password not match";
+"Please select gender" = "Please select gender";
+"Please set date of birth" = "Please set date of birth";
+
+"Save Story" = "Save Story";
+"Are you sure you want to save this story?" = "Are you sure you want to save this story?";
+"Successfully Saved" = "Successfully Saved";
+"Do you really want to remove this user as friend?" = "Do you really want to remove this user as friend?";
+
+"The story is added to your profile" = "The story is added to your profile";
+"Story saved successfully" = "Story saved successfully";
+"wants to be your friend" = "wants to be your friend";
+"New Friend Request" = "New Friend Request";
+
+"The comment field is required when attachment is not present" = "The comment field is required when attachment is not present";
+"commented on your" = "commented on your";
+"New Comment" = "New Comment";
+"accepts your friend request" = "accepts your friend request";
+"Request Accepted" = "Request Accepted";
+
+" post" = " post";
+
+// edit profile
+"Edit Profile" = "Edit Profile";
+"Engaged" = "Engaged";
+"Married" = "Married";
+"Widowed" = "Widowed";
+"Seperated" = "Seperated";
+"Divorced" = "Divorced";
+"Single" = "Single";
+"Textfield cannot be empty." = "Textfield cannot be empty.";
+"Only Me" = "Only Me";
+"only_me" = "only_me";
+"Add work" = "Add work";
+"Add education" = "Add education";
+"Birthday" = "Birthday";
+"Where did you work?" = "Where did you work?";
+"Position" = "Position";
+"City" = "City";
+"From" = "From";
+"Description" = "Description";
+"To" = "To";
+"Add Work" = "Add Work";
+"Add Education" = "Add Education";
+"Your Institute" = "Your Institute";
+"Degree Title" = "Degree Title";
+"Remember my choice" = "Remember my choice";
+"Save" = "Save";//
+"Update User Information" = "Update User Information";
+"Please edit username and then save it" = "Please edit username and then save it";
+"Please edit location and then save it" = "Please edit location and then save it";
+"Enter location" = "Enter location";
+"Please edit phone number and then save it" = "Please edit phone number and then save it";
+"Enter phone" = "Enter phone";
+"Please edit about and then save it" = "Please edit about and then save it";
+"Enter about you" = "Enter about you";
+
+"Only Me" = "Only Me";
+"Friends" = "Friends";
+"Public" = "Public";
+"Error" = "Error";
+"Please Enter Email Address" = "Please Enter Email Address";
+"Please Enter Valid Email Address" = "Please Enter Valid Email Address";
+"Please Enter Password" = "Please Enter Password";
+"Password should be more than 6 characters"  = "Password should be more than 6 characters";
+"You want to Logout?" = "You want to Logout?";
+"Alert" = "Alert";
+"Yes" = "Yes";
+"Cancel" = "Cancel";
+"No Contact found. Please Go to Settings and allow contacts in privacy settings" = "No Contact found. Please Go to Settings and allow contacts in privacy settings";
+"Do you really want to logout from My Life?" = "Do you really want to logout from My Life?";
+"Logout" = "Logout";
+"CANCEL" = "CANCEL";
+"Are you sure you want to Accept Request?" = "Are you sure you want to Accept Request?";
+"Accept Request" = "Accept Request";
+"Cancel" = "Cancel";
+
+"Please Enter Where Did You Work Details" = "Please Enter Where Did You Work Details";
+
+"Please Enter Where You Have Studied" = "Please Enter Where You Have Studied";
+
+"Please Enter Your Education Title"  = "Please Enter Your Education Title";
+
+"Please Enter From Date" = "Please Enter From Date";
+
+"Please Enter To Date" = "Please Enter To Date";
+
+
+"Please Enter Your Position" = "Please Enter Your Position";
+"Please Enter Your City"  = "Please Enter Your City";
+"Please Enter Description" = "Please Enter Description";
+"Please Enter From Date" = "Please Enter From Date";
+"Please Enter To Date"  = "Please Enter To Date";
+"No Contacts Found" = "No Contacts Found";
+
+"CANCEL REQUEST" =  "CANCEL REQUEST";
+"Share" = "Share";
+
+
+"Are you sure you want to share this post?" = "Are you sure you want to share this post?";
+"Yes"  ="Yes";
+"Cancel" = "Cancel";
+"User Blocked Successfully" = "User Blocked Successfully";
+"No record found" = "No record found";
+"Image Saved" = "Image Saved";
+"Image successfully saved to Photos library" = "Image successfully saved to Photos library";
+"Unable to capture media" = "Unable to capture media";
+"Alert message when something goes wrong during capture session configuration" = "Alert message when something goes wrong during capture session configuration";
+
+"AVCam doesn't have permission to use the camera, please change privacy settings" = "AVCam doesn't have permission to use the camera, please change privacy settings";
+
+
+"Alert message when the user has denied access to the camera" = "Alert message when the user has denied access to the camera";
+
+
+
+
+"Settings" = "Settings";
+
+"Blocked User Removed Successfully" = "Blocked User Removed Successfully";
+" is at " = " is at ";
+" feeling " = " feeling ";
+"is feeling " = "is feeling ";
+"Please Accept Terms and Conditons to Processed" = "يرجى قبول الشروط والاداعات لمعالجة";
+"Studied" = "Studied";
+" at " =  " at ";
+"DatePicker" = "DatePicker";
+"Network Time Out, Please Try Again." = "Network Time Out, Please Try Again.";
+
+
+"Save error" = "Save error";
+"Saved!" = "Saved!";
+"Picture has been saved to your photos" = "Picture has been saved to your photos";
+
+"Selection Option" = "Selection Option";
+"Share with everyone" = "Share with everyone";
+"Do you really want to share this post as public post?" = "Do you really want to share this post as public post?";
+"Share with friends" = "Share with friends";
+"Do you really want to shate this post with your friends?" = "Do you really want to shate this post with your friends?";
+"Share on my timeline" = "Share on my timeline";
+"Do you really want to shate this post on your timeline?" = "Do you really want to shate this post on your timeline?";
+"private" = "private";
+"Share Post" = "Share Post";
+"Schedule Sharing" = "Schedule Sharing";
+"Do you want to schedule this share?" = "Do you want to schedule this share?";
+"Yes" = "Yes";
+"Schedule Post" = "Schedule Post";
+"NO! JUST SHARE IT NOW" = "NO! JUST SHARE IT NOW";
+
+"TAGGED" = "TAGGED";
+"Checked into " = "Checked into ";
+"No schedule post available" = "No schedule post available";
+
+"No Upcoming Birthdays Found \n Tap to refresh" = "No Upcoming Birthdays Found \n Tap to refresh";
+"Up Coming Birthdays" = "Up Coming Birthdays";
+"Remove" = "Remove";

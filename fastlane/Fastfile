@@ -1,0 +1,154 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.50.1"
+
+default_platform :ios
+
+platform :ios do
+
+  appName = 'SocialMedia'
+  buildNumber = 0
+  changelog = ""
+
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    ENV["HIPCHAT_API_TOKEN"] = "7d985628231e94e252b6c5ac1ae4f3"
+    ENV["HIPCHAT_API_VERSION"] = "2"
+    ENV["FL_HIPCHAT_CHANEL"] = appName
+
+    # ensure_git_status_clean
+    # cocoapods
+
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  #desc "Submit a new Beta Build to Apple TestFlight"
+  #desc "This will also make sure the profile is up to date"
+
+  lane :beta do
+
+    increment_build_number  # increments build number
+
+    # increment_version_number            # increments version number
+    # buildNumber = get_build_number      # Get the build number of your project
+    # versionNumber = get_version_number  # Get the version number of your project
+
+    buildNumber = lane_context[Actions::SharedValues::BUILD_NUMBER]
+
+    changelog = prompt(
+        text: "Changelog: ",
+    	   multi_line_end_keyword: "end"
+  	    )
+
+    # match(type: "appstore") # more information: https://codesigning.guide
+    gym(scheme: 'SocialMedia', export_method: 'development')
+
+    # emails = values[:test_email] ? values[:test_email] : ['m.umer@mytechnology-team.com'] # You can list more emails here
+    # groups = values[:test_email] ? nil : nil # You can define groups on the web and reference them here
+
+    crashlytics(api_token: '0d39b730bb17250f4138185526cabbf445143faf',
+             build_secret: '14faceb20cbec646c59fd0ec01e63c4f26e788c38fefa2ffdeb648649568fcad',
+                 # emails: emails,
+                   groups: ['OfficeDevices', appName],
+                    notes: changelog, # Check out the changelog_from_git_commits action
+            notifications: true) # Should this distribution notify your testers via email?
+
+    # pilot
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
+
+    # Make sure our directory is clean, except for changes Fastlane has made
+    clean_build_artifacts
+
+    # Tag release and push to GitHub
+    commit_version_bump message: "Beta Release #{buildNumber}, Changelog: " + changelog
+    add_git_tag(tag: "fastlane-#{buildNumber}")
+    push_to_git_remote
+
+    version_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
+
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    # match(type: "appstore")
+    # snapshot
+    # gym
+    # deliver(force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    message = appName + ": fastlane was successful, beta build released"
+
+    notification(
+          title: "Fastlane",
+          subtitle: appName,
+          message: message,
+        )
+
+    # You can notify your team in chat that a beta build has been uploaded
+    slack(
+          # channel: "ios-build",
+          message: "Successfully uploaded a beta release of " + appName + " :champagne: - see it at https://fabric.io/_/beta",
+          success: true,        # optional, defaults to true
+          payload: {            # optional, lets you specify any number of your own Slack attachments
+            'App' => appName,
+            'Version' => buildNumber,
+            'Changelog' => changelog,
+            },
+          )
+
+    hipchat(
+          message: message,
+          notify_room: true,
+          success: true,
+        )
+  end
+
+  error do |lane, exception|
+    notification(
+          title: "Fastlane",
+          subtitle: appName,
+          message: exception.message,
+        )
+
+     slack(
+          message: exception.message,
+          success: false,
+        )
+
+     hipchat(
+          message: exception.message,
+          notify_room: true,
+          success: false,
+        )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded.
+# Learn more at https://github.com/fastlane/fastlane#metrics

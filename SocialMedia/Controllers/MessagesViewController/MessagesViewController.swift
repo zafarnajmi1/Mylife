@@ -1,0 +1,2520 @@
+//
+//  MessagesViewController.swift
+//  SocialMedia
+//
+//  Created by Muhammad Umer on 11/08/2017.
+//  Copyright © 2017 My Technology. All rights reserved.
+//
+
+import UIKit
+import ImagePicker
+import Lightbox
+import NVActivityIndicatorView
+import MobileCoreServices
+import AVFoundation
+import AVKit
+import FileExplorer
+import Alamofire
+import SocketIO
+
+extension SegueIdentifiable {
+    static var messagesViewController : SegueIdentifier {
+        return SegueIdentifier(rawValue: MessagesViewController.className)
+    }
+}
+
+class MessagesViewController: UIViewController, UITableViewDelegate,UITextViewDelegate, UITableViewDataSource, UITextFieldDelegate,NVActivityIndicatorViewable, ImagePickerDelegate, UIActionSheetDelegate {
+    
+    
+    @IBOutlet weak var attachmentImageConstOne: NSLayoutConstraint!
+    @IBOutlet weak var attachmentImageConstTwo: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottomAttachment: UIImageView!
+    @IBOutlet weak var btmDiscardAttachment: UIButton!
+    
+    var attributedString2 = NSMutableAttributedString(string: "")
+    
+    let user = SharedData.sharedUserInfo
+    var socket:SocketIOClient!
+     var manager:SocketManager!
+    
+    var imagePickerController = UIImagePickerController()
+    var videoURL: URL?
+    var dataArray = [ChatData] ()
+    var newdataArray = [NewData] ()
+    
+    let barHeight: CGFloat = 50
+    var recevierId = 0
+    var conversationId = 0
+    
+    var pickedImnageUrl: URL?
+    var thumnailUrl: URL?
+    var imgCounter = 0
+    var addMedia = false
+    var keyboardhide = false
+    var onlineFriend = 0
+    
+    var isKeyboardOpened = false
+    var isKeyboardToggling = false
+    
+    var isKeyboardOpened2 = false
+    var isKeyboardToggling2 = false
+    
+    var navTitle : String?
+    var userImage : String = ""
+    var txtMessageValue : String = ""
+    
+    var userEmoji : String = ""
+    var docURL : URL?
+    
+    @IBOutlet var tblView: UITableView!
+    @IBOutlet var viewContainer: UIView!
+    @IBOutlet var viewMainContainer: UIView!
+    
+    @IBOutlet var viewContainer1: UIView!
+    @IBOutlet var viewContainer2: UIView!
+    @IBOutlet var viewContainer3: UIView!
+    @IBOutlet var viewContainer4: UIView!
+    @IBOutlet var viewContainer5: UIView!
+    @IBOutlet var viewImageAtt: UIView!
+    
+    @IBOutlet var txtMessage: UITextView!
+    @IBOutlet var txtMessage2: UITextView!
+    
+    @IBOutlet var oltSend: UIButton!
+    @IBOutlet var oltAddAttachment: UIButton!
+    
+    @IBOutlet var bowtiebtn: UIButton!
+    @IBOutlet var cornbtn: UIButton!
+    @IBOutlet var sunnybtn: UIButton!
+    @IBOutlet var squirrrelbtn: UIButton!
+    @IBOutlet var onebtn: UIButton!
+    var iconsArray = [Icons]()
+    
+    @IBOutlet var imgProfilePhoto: UIImageView!
+    var searchTimer: Timer?
+    var combination = NSMutableAttributedString()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var keyB = KeyboardState.Shown
+        print(keyB)
+        
+        
+        var language = txtMessage.textInputMode?.primaryLanguage
+        print(language)
+        self.setupKeyboardScrolling()
+        self.keyboardhide = false
+        txtMessage.delegate = self;
+        
+        appDelegate.disableToolbarOnKeyboard(controller: MessagesViewController.self)
+        appDelegate.disableDistanceHandling(controller: MessagesViewController.self)
+        appDelegate.enableTouchOnKeyboard(controller: MessagesViewController.self)
+        leftMarginToPlaceHolder()
+        // self.attachmentImageConstOne.constant = 5
+        //        self.attachmentImageConstTwo.constant = 5
+        self.imageViewBottomAttachment.isHidden = true
+        self.btmDiscardAttachment.isHidden = true
+        self.viewImageAtt.isHidden = true
+        self.viewMainContainer.isHidden = true
+        iconsArray.removeAll()
+        if iconsArray.isEmpty {
+            
+        }
+        else {
+            iconsArray = self.user.EmojiArray[0].icons!
+            
+        }
+        self.showLoader()
+        self.hitConversation()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func leftMarginToPlaceHolder() {
+        let message = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 50))
+        //  txtMessage.leftView = message
+        
+        // txtMessage.leftViewMode = UITextFieldViewMode.always
+    }
+    
+    @IBOutlet var EmojiCollection: UICollectionView!{
+        didSet{
+            EmojiCollection.delegate = self
+            EmojiCollection.dataSource = self
+        }
+    }
+    
+    @IBAction func bowtieButtonPressed(_ sender: UIButton) {
+        iconsArray.removeAll()
+        self.viewContainer1.backgroundColor = UIColor.gray
+        self.viewContainer2.backgroundColor = UIColor.white
+        self.viewContainer3.backgroundColor = UIColor.white
+        self.viewContainer4.backgroundColor = UIColor.white
+        self.viewContainer5.backgroundColor = UIColor.white
+        
+        iconsArray = self.user.EmojiArray[0].icons!
+        self.EmojiCollection.reloadData()
+    }
+    
+    @IBAction func cornButtonPressed(_ sender: UIButton) {
+        iconsArray.removeAll()
+        iconsArray = self.user.EmojiArray[3].icons!
+        self.viewContainer1.backgroundColor = UIColor.white
+        self.viewContainer2.backgroundColor = UIColor.white
+        self.viewContainer3.backgroundColor = UIColor.white
+        self.viewContainer4.backgroundColor = UIColor.gray
+        self.viewContainer5.backgroundColor = UIColor.white
+        self.EmojiCollection.reloadData()
+        
+    }
+    
+    @IBAction func oneButtonPressed(_ sender: UIButton) {
+        iconsArray.removeAll()
+        iconsArray = self.user.EmojiArray[4].icons!
+        self.viewContainer1.backgroundColor = UIColor.white
+        self.viewContainer2.backgroundColor = UIColor.white
+        self.viewContainer3.backgroundColor = UIColor.white
+        self.viewContainer4.backgroundColor = UIColor.white
+        self.viewContainer5.backgroundColor = UIColor.gray
+        self.EmojiCollection.reloadData()
+        
+    }
+    
+    @IBAction func squirrelButtonPressed(_ sender: UIButton) {
+        iconsArray.removeAll()
+        iconsArray = self.user.EmojiArray[2].icons!
+        self.viewContainer1.backgroundColor = UIColor.white
+        self.viewContainer2.backgroundColor = UIColor.white
+        self.viewContainer3.backgroundColor = UIColor.gray
+        self.viewContainer4.backgroundColor = UIColor.white
+        self.viewContainer5.backgroundColor = UIColor.white
+        self.EmojiCollection.reloadData()
+        
+    }
+    @IBAction func sunnyButtonPressed(_ sender: UIButton) {
+        iconsArray.removeAll()
+        iconsArray = self.user.EmojiArray[1].icons!
+        self.viewContainer1.backgroundColor = UIColor.white
+        self.viewContainer2.backgroundColor = UIColor.gray
+        self.viewContainer3.backgroundColor = UIColor.white
+        self.viewContainer4.backgroundColor = UIColor.white
+        self.viewContainer5.backgroundColor = UIColor.white
+        self.EmojiCollection.reloadData()
+        
+    }
+    func hitConversation(){
+        
+        
+        
+        if let userToken = UserDefaults.standard.value(forKey: "userAuthToken") as? String {
+            
+            let usertoken = [
+                "token":  userToken
+            ]
+            
+            let specs: SocketIOClientConfiguration = [
+                .forcePolling(false),
+                .forceWebsockets(true),
+                .path("/socket.io"),
+                .connectParams(usertoken),
+                .log(true)
+            ]
+            
+            
+            self.manager = SocketManager(socketURL: URL(string:  ApiCalls.baseUrlSocket)! , config: specs)
+            
+            self.socket = manager.defaultSocket
+            
+            
+//            self.socket  = SocketIOClient(
+//                socketURL: NSURL(string: ApiCalls.baseUrlSocket)! as URL as URL,
+//                config: specs)
+            
+            
+            
+            self.socket.on("connected") { (data, ack) in
+                if let arr = data as? [[String: Any]] {
+                    if let txt = arr[0]["text"] as? String {
+                        print(txt)
+                    }
+                }
+                
+            }
+            
+            
+            //
+            
+            self.socket.on("typing") { (data, ack) in
+                
+                let modified =  (data[0] as AnyObject)
+                
+                let dictionary = modified as! [String: AnyObject]
+                let chat = Typing.init(dictionary: dictionary as NSDictionary)
+                print(dictionary)
+                
+                if let _navTitle2 = chat!.message {
+                    if(chat!.message==""){
+                        self.title = self.navTitle
+                    }
+                    else{
+                        self.navigationItem.titleView = self.setTitle(title: self.navTitle!, subtitle: chat!.message!)
+                    }
+                    
+                    
+                    //   self.title = _navTitle
+                } else  {
+                    self.title = self.navTitle
+                    //  self.title = "Messages"
+                }
+            }
+            self.socket.on("typing-end") { (data, ack) in
+                
+                
+                let modified =  (data[0] as AnyObject)
+                
+                let dictionary = modified as! [String: AnyObject]
+                let chat = Typing.init(dictionary: dictionary as NSDictionary)
+                print(dictionary)
+                
+                if let _navTitle = self.navTitle {
+                    //  self.navigationItem.titleView = self.setTitle(title: _navTitle, subtitle: ".")
+                    
+                    self.navigationItem.titleView = self.setTitle(title: self.navTitle!, subtitle: "")
+                } else  {
+                    self.title = "Messages"
+                }
+            }
+            let conversationID = [
+                "receiver_id":  self.recevierId,
+                "chat_group_id":  0
+                
+            ]
+            
+            self.socket.on("getConversation") { (data, ack) in
+                let modified =  (data[0] as AnyObject)
+                
+                let dictionary = modified as! [String: AnyObject]
+                
+                print( dictionary)
+                
+                
+                let objData = ChatModel(fromDictionary: dictionary)
+                
+                self.dataArray = (objData.data)!
+                
+                print(objData.data)
+                print( self.dataArray)
+                
+                if self.dataArray.count > 0 {
+                    
+                    self.tblView.reloadData()
+                    self.updateTableContentInset()
+                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                }
+                self.stopAnimating()
+            }
+            
+            self.socket.on("refreshConversation") { (data, ack) in
+                
+                  self.socket.emit("getConversation", with: [conversationID])
+                self.stopAnimating()
+            }
+            
+           
+            
+            print(conversationID)
+            
+//            self.socket.on("conversationsList") { (data, ack) in
+//
+//                self.socket.emit("getConversation", with: [conversationID])
+//            }
+            
+//            self.socket.on("messageReceived") { (data, ack) in
+//                self.socket.emit("getConversation", with: [conversationID])
+//            }
+            
+            self.socket.on("newMessage") { (data, ack) in
+                
+                
+                let modified =  (data[0] as AnyObject)
+                
+                let dictionary = modified as! [String: AnyObject]
+                
+                print( dictionary)
+                
+                let objData = ChatModel(fromDictionary: dictionary)
+                
+                if(objData.data_new_message != nil)
+                {
+                    self.dataArray.append(objData.data_new_message!)
+                    
+                    if self.dataArray.count > 0
+                    {
+                        self.tblView.reloadData()
+                        self.updateTableContentInset()
+                        self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                    }
+                    
+                    if (UserHandler.sharedInstance.userData?.id != objData.data_new_message!.sender.id)
+                    {
+                       
+                        print(UserHandler.sharedInstance.userData?.id)
+                        print(objData.data_new_message!.sender.id)
+                        
+                        var dataChat = dictionary["data"] as! [String: AnyObject]
+                    
+                        //let dictionary = ["aKey": "aValue", "anotherKey": "anotherValue"]
+                        if let theJSONData = try? JSONSerialization.data(
+                            withJSONObject: dataChat,
+                            options: []) {
+                            let theJSONText = String(data: theJSONData,
+                                                     encoding: .ascii)
+                            print("JSON string = \(theJSONText!)")
+                            
+                            
+                            let conversationmessage = [
+                                "message":  dataChat//theJSONText
+                            ]
+                            
+                            print(conversationmessage)
+                            
+                            self.socket.emit("messageReceived", with: [conversationmessage])
+                        
+                        }
+                        
+                        
+                      
+                    }
+                }
+                
+                
+                //UserHandler.sharedInstance.userData?.image!
+                
+                // check lgya phala id !=. current user =>
+                //// self.socket.emit("messageReceived", with: [conversationID])
+                
+                
+                
+                //
+                //                let objData = NewMessage(dictionary: dictionary as NSDictionary)
+                //
+                //         // self.dataArray = (newData)
+                //
+                //                //   self.dataArray = successResponse.data
+                //                print(objData?.data)
+                //                print( self.dataArray.count)
+                //
+                //
+                //             //   self.newdataArray = (objData?.data)!
+                //                if self.dataArray.count > 0 {
+                //
+                //                  //  self.dataArray.append((objData!.data))
+                //
+                //
+                //
+                //
+                //
+                //                    self.tblView.reloadData()
+                //                    self.updateTableContentInset()
+                //                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                //                }
+                //  self.getConversationMessages()
+                //self.socket.emit("getConversation", with: [conversationID])
+                
+                self.stopAnimating()
+                
+            }
+            
+            
+            
+//            self.socket.on("lastMessage") { (data, ack) in
+//                let modified =  (data[0] as AnyObject)
+//
+//                let dictionary = modified as! [String: AnyObject]
+//
+//                print( dictionary)
+//            }
+            
+            self.socket.on("messageReceived") { (data, ack) in
+                
+                let modified =  (data[0] as AnyObject)
+                
+                let dictionary = modified as! [String: AnyObject]
+                
+                print( dictionary)
+                
+                let objData = ChatModel(fromDictionary: dictionary)
+                
+                if(objData.data_new_message != nil)
+                {
+                
+                    for x in 0..<self.dataArray.count
+                    {
+                        if(self.dataArray[x].id == objData.data_new_message!.id)
+                        {
+                            self.dataArray[x].isRead = true
+                        }
+                    }
+                    
+                    if self.dataArray.count > 0
+                    {
+                        
+                        self.tblView.reloadData()
+                        self.updateTableContentInset()
+                        self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                    }
+                }
+                
+  
+              // self.socket.emit("getConversation", with: [conversationID])
+            }
+            
+            
+            self.socket.on(clientEvent: .connect) {data, emitter in
+                // handle connected
+
+
+                self.socket.emit("getConversation", with: [conversationID])
+
+            }
+            
+            
+            
+            self.socket.on(clientEvent: .disconnect, callback: { (data, emitter) in
+                //handle diconnect
+            })
+            
+            self.socket.onAny({ (event) in
+                //handle event
+            })
+            
+            self.socket.connect()
+            // CFRunLoopRun()
+            
+            // Do any additional setup after loading the view.
+        }
+    }
+    func setTitle(title:String, subtitle:String) -> UIView {
+        
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: -2, width: 0, height: 0))
+        
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        titleLabel.text = title
+        titleLabel.sizeToFit()
+        
+        let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
+        subtitleLabel.backgroundColor = .clear
+        subtitleLabel.textColor = UIColor.white
+        subtitleLabel.font = UIFont.systemFont(ofSize: 12)
+        subtitleLabel.text = subtitle
+        subtitleLabel.sizeToFit()
+        
+        
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height: 30))
+        titleView.addSubview(titleLabel)
+        titleView.addSubview(subtitleLabel)
+        
+        let widthDiff = subtitleLabel.frame.size.width - titleLabel.frame.size.width
+        
+        if widthDiff < 0 {
+            let newX = widthDiff / 2
+            subtitleLabel.frame.origin.x = abs(newX)
+        } else {
+            let newX = widthDiff / 2
+            titleLabel.frame.origin.x = newX
+        }
+        
+        return titleView
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let _navTitle = self.navTitle {
+            //  self.navigationItem.titleView = self.setTitle(title: _navTitle, subtitle: ".")
+            
+            self.title = _navTitle
+        } else  {
+            self.title = "Messages"
+        }
+        txtMessage.delegate = self;
+        imgProfilePhoto.roundWithClearColor()
+        imgProfilePhoto.sd_setImage(with: URL(string: userImage), placeholderImage: UIImage(named: "placeHolderGenral"))
+        
+        // startObservingKeyboard()
+        self.tblView.delegate = self
+        self.tblView.dataSource = self
+        
+        addBackButton()
+        self.setupView()
+        //  self.getConversationMessages()
+        
+        //j self.txtMessage..addTarget(self, action: #selector(textFieldDidEditingChanged(_:)), for: .editingChanged)
+        
+        
+        
+    }
+    private func scrollToBottom(animated: Bool) {
+        
+        if self.dataArray.count > 0 {
+            let lastRow = IndexPath(row: self.dataArray.count - 1 , section: 0)
+            self.tblView.scrollToRow(at: lastRow, at: .top, animated: animated)
+        }
+    }
+    // MARK: - KEYBOARD SCROLLING
+    private var keyboard: Keyboard!
+    
+    private func setupKeyboardScrolling() {
+        self.keyboard = Keyboard()
+        
+        // Lift/lower send view based on keyboard height.
+        let keyboardAnimation = { [unowned self] in
+            
+            self.keyboardhide = true
+            var keyboardHeight = self.keyboard.height
+            if #available(iOS 11.0, *) {
+                let bottomInset = self.view.safeAreaInsets.bottom
+                keyboardHeight -= bottomInset
+            }
+            self.viewMainContainer.isHidden = true
+            self.bottomConstraint.constant  = keyboardHeight
+            self.isKeyboardOpened2 = false
+            //  self.bottomConstraint.constant = self.keyboard.height
+            self.view.layoutIfNeeded()
+        }
+        // Scroll to bottom after animation.
+        let keyboardCompletion: (Bool) -> Void = { [unowned self] _ in
+            self.scrollToBottom(animated: true)
+            
+            self.isKeyboardOpened2 = false
+            
+        }
+        
+        // React to keyboard height changes.
+        self.keyboard.heightChanged = {
+            UIView.animate(
+                withDuration: 0.2,
+                animations: keyboardAnimation,
+                completion: keyboardCompletion
+            )
+        }
+        
+        // Hide keyboard on tap.
+        let tap =
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(self.hideKeyboard(_:))
+        )
+        self.tblView.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        //  self.sendView?.removeFocus()
+        view.endEditing(true)
+        if(self.keyboardhide){
+            
+            
+            if #available(iOS 11.0, *) {
+                let bottomInset = self.view.safeAreaInsets.bottom
+                //  self.viewMainContainer.isHidden = true
+                //   self.isKeyboardOpened2 = false
+                self.bottomConstraint.constant  += bottomInset
+                self.keyboardhide = false
+            }
+        }
+        
+        
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id": self.conversationId
+            
+            
+        ]
+        self.socket.emit("typing-end", with: [conversationID])
+        
+    }
+    // reset the searchTimer whenever the textField is editingChanged
+    func textViewDidChange(_ textView: UITextView) {
+        
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+        ]
+        self.socket.emit("typing", with: [conversationID])
+        //    self.socket.emit("typing")
+        // if a timer is already active, prevent it from firing
+        if searchTimer != nil {
+            searchTimer?.invalidate()
+            searchTimer = nil
+        }
+        
+        // reschedule the search: in 1.0 second, call the searchForKeyword method on the new textfield content
+        searchTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(searchForKeyword(_:)), userInfo: textView.text!, repeats: false)
+    }
+    
+    @objc func searchForKeyword(_ timer: Timer) {
+        
+        // retrieve the keyword from user info
+        let keyword = timer.userInfo!
+        
+        print("Searching for keyword \(keyword)")
+        
+        
+        //        let msg = getEmoji(name : ("\(keyword)"))
+        //
+        //        self.txtMessage.attributedText = msg
+        
+    }
+    
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //   stopObservingKeyboard()
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        self.socket.emit("typing-end", with: [conversationID])
+        
+        
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Custom
+    func setupView(){
+        self.tblView.delegate = self
+        self.tblView.dataSource = self
+        
+        self.tblView.estimatedRowHeight = self.barHeight
+        self.tblView.rowHeight = UITableView.automaticDimension
+        self.tblView.contentInset.bottom = self.barHeight
+        self.tblView.scrollIndicatorInsets.bottom = self.barHeight
+        
+        // self.viewContainer.backgroundColor = CommonMethods.getAppColor()
+        
+        let imageSend = #imageLiteral(resourceName: "iconSend")
+        let renderdImage = imageSend.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        self.oltSend.setImage(renderdImage, for: .normal)
+        self.oltSend.tintColor = CommonMethods.getAppColor() //
+        
+        let imgAdd = #imageLiteral(resourceName: "attach")
+        let attachRendImage = imgAdd.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        self.oltAddAttachment.setImage(attachRendImage, for: .normal)
+        self.oltAddAttachment.tintColor = CommonMethods.getAppColor()
+        
+        //self.txtMessage.layer.cornerRadius = 10
+        self.txtMessage.delegate = self
+        
+    }
+    // MARK: - Animation Loader
+    func showLoader(){
+        let size = CGSize(width: 30, height: 30)
+        startAnimating(size, message: "Loading...".localized,messageFont: CommonMethods.getFontOfSize(size: 14),type: NVActivityIndicatorType.ballTrianglePath)
+    }
+    
+    // MARK:- Image Picker Delegate Metods
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        print("wrapper= ",images)
+        guard images.count > 0 else { return }
+        let lightboxImages = images.map {
+            return LightboxImage(image: $0)
+        }
+        let lightbox = LightboxController(images: lightboxImages, startIndex: 0)
+        imagePicker.present(lightbox, animated: true, completion: nil)
+    }
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        print("Done Bitton = ",images)
+        if images.count > 0
+        {
+            saveFileToDocumentsDirectory(image: images[0])
+            self.imageViewBottomAttachment.image = images[0]
+            self.addMedia = true
+            self.updateAttachmentConstraint()
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    func saveFileToDocumentsDirectory(image: UIImage) {
+        if let savedUrl = FileManager.default.saveImageToDocumentsDirectory(image: image, name: "MessagesPicture", extention: ".jpg")
+        {
+            self.pickedImnageUrl = savedUrl
+            //            self.imgCounter = 1
+            
+        }
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController){
+        
+    }
+    func imagePickerControllerDidCancel(picker: ImagePickerController!)
+    {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Save Video File
+    func saveThumnailFileToDocumentsDirectory(image: UIImage) {
+        if let savedUrl = FileManager.default.saveImageToDocumentsDirectory(image: image, name: "CommentPicture", extention: ".jpg") {
+            self.thumnailUrl = savedUrl
+        }
+    }
+    
+    // MARK: - Video Browser function
+    private func openImgPicker() {
+        imagePickerController.sourceType = .savedPhotosAlbum
+        imagePickerController.delegate = self
+        imagePickerController.mediaTypes = [kUTTypeMovie as NSString as String]
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: - UITableViewDelegates
+    
+    func updateTableContentInset() {
+        let numRows = tableView(self.tblView, numberOfRowsInSection: 0)
+        var contentInsetTop = self.tblView.bounds.size.height
+        for i in 0..<dataArray.count {
+            let rowRect = self.tblView.rectForRow(at: IndexPath(item: i, section: 0))
+            contentInsetTop -= rowRect.size.height
+            if contentInsetTop <= 0 {
+                contentInsetTop = 0
+            }
+        }
+        self.tblView.contentInset = UIEdgeInsets(top: contentInsetTop, left: 0, bottom: 0, right: 0)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if dataArray.count > 0{
+            
+            let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text          = ""
+            noDataLabel.textColor     = UIColor(red:172/255,green:172/255,blue:172/255, alpha: 1)
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
+            return dataArray.count
+        }else{
+            
+            let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text          = "You have no new message".localized
+            noDataLabel.textColor     = UIColor(red:172/255,green:172/255,blue:172/255, alpha: 1)
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
+            
+        }
+        return dataArray.count
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if tableView.isDragging {
+            cell.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.transform = CGAffineTransform.identity
+            })
+        }
+    }
+    
+    func getEmoji(name:String) -> (NSMutableAttributedString) {
+        
+        //  let msg = "Good Morning!" + name
+        
+        let iconsSize = CGRect(x: 0, y: -5, width: 20, height: 20)
+        
+        
+        
+        
+        
+        
+        var sample = name
+        
+        var attributedString = NSMutableAttributedString(string: sample)
+        
+        
+        
+        
+        
+        
+        var regex: NSRegularExpression
+        do {
+            regex = try NSRegularExpression(pattern: "\\:.+?\\:", options: .caseInsensitive)
+            var matches = regex.matches(in: sample, options: []
+                , range: NSMakeRange(0, (sample.count))) as Array<NSTextCheckingResult>
+            print(matches)
+            
+            
+            
+            
+            var cnt=0;
+            
+            
+            
+            for match in matches {
+                var r = (sample as! NSString).substring(with: match.range)
+                
+                var image1Attachment = NSTextAttachment()
+                r.removeFirst()
+                r.removeLast()
+                image1Attachment.image = UIImage(named:r+".png")
+                image1Attachment.bounds = iconsSize
+                
+                let image1String = NSAttributedString(attachment: image1Attachment)
+                print(match.range)
+                
+                var nCnt = 0;
+                
+                var newRange = NSMakeRange(match.range.location + cnt, match.range.length)
+                
+                //nCnt = (newRange?.lowerBound)!
+                
+                
+                attributedString.insert(image1String,at: newRange.location )
+                
+                
+                
+                print(attributedString.length)
+                
+                cnt += 1
+                
+            }
+            
+            
+            
+            
+            var totalAdded = 0;
+            var prevTokSize = 0;
+            var sumOfPrevTokSizes = 0;
+            
+            for match in matches {
+                
+                attributedString.mutableString.replaceCharacters(in: NSMakeRange( match.range.location - sumOfPrevTokSizes + 1 + totalAdded , match.range.length), with: "")
+                totalAdded += 1;
+                
+                prevTokSize = match.range.length
+                sumOfPrevTokSizes += prevTokSize
+            }
+        } catch {
+            print(error)
+        }
+        return (attributedString)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let objChat = dataArray[indexPath.row]
+        let objUser = UserHandler.sharedInstance.userData
+        
+        if objChat.receiverId != objUser?.id{
+            
+            if objChat.attachment_type == ""{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiverCell", for: indexPath) as! ReceiverCell
+                
+                
+                let msg = getEmoji(name:objChat.message)
+                
+                cell.message.attributedText = msg
+                cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                cell.message.textColor = UIColor.white
+                if(objChat.isRead){
+                    cell.messageRead.image = UIImage(named: "done_all")
+                }
+                else{
+                    cell.messageRead.image = UIImage(named: "done-1")
+                    
+                }
+                
+                let timeStream = NSDate(timeIntervalSince1970: TimeInterval(objChat.createdAt.toDouble))
+                let date = CommonMethods.timeAgoSinceDate(date: timeStream, numericDates:true)
+                cell.time.text = date
+                cell.messageBackground.backgroundColor = CommonMethods.getAppColor()
+                return cell
+                
+            }
+            else{
+                if objChat.attachment_type == "video/quicktime"{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "RecieverCellWithAttachment", for: indexPath) as! RecieverCellWithAttachment
+                    
+                    let msg = getEmoji(name:objChat.message)
+                    
+                    cell.message.attributedText = msg
+                    
+                    cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                    
+                    //cell.message.text = objChat.message
+                    cell.message.textColor = UIColor.white
+                    cell.videoPlayerButton.isHidden = false
+                    if(objChat.isRead){
+                        cell.messageRead.image = UIImage(named: "done_all")
+                    }
+                    else{
+                        cell.messageRead.image = UIImage(named: "done-1")
+                        
+                    }
+                    
+                    cell.messageBackground.backgroundColor = CommonMethods.getAppColor()
+                    cell.messageAttachment.sd_setImage(with: URL(string: objChat.attachment), placeholderImage: UIImage(named: "placeHolderGenral"))
+                    cell.messageAttachment.sd_setShowActivityIndicatorView(true)
+                    cell.messageAttachment.sd_setIndicatorStyle(.gray)
+                    let timeStream = NSDate(timeIntervalSince1970: TimeInterval(objChat.createdAt.toDouble))
+                    let date = CommonMethods.timeAgoSinceDate(date: timeStream, numericDates:true)
+                    cell.lblDateTime.text = date
+                    cell.messageAttachment.clipsToBounds = true
+                    cell.delegate = self as tapOnMessageAttachementReciever
+                    return cell
+                }
+                else{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "RecieverCellWithAttachment", for: indexPath) as! RecieverCellWithAttachment
+                    
+                    
+                    let msg = getEmoji(name:objChat.message)
+                    
+                    cell.message.attributedText = msg
+                    cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                    
+                    //  cell.message.text = objChat.message
+                    cell.message.textColor = UIColor.white
+                    if(objChat.isRead){
+                        cell.messageRead.image = UIImage(named: "done_all")
+                    }
+                    else{
+                        cell.messageRead.image = UIImage(named: "done-1")
+                        
+                    }
+                    cell.videoPlayerButton.isHidden = true
+                    cell.messageBackground.backgroundColor = CommonMethods.getAppColor()
+                    cell.messageAttachment.sd_setImage(with: URL(string: objChat.attachment), placeholderImage: UIImage(named: "placeHolderGenral"))
+                    cell.messageAttachment.sd_setShowActivityIndicatorView(true)
+                    cell.messageAttachment.sd_setIndicatorStyle(.gray)
+                    let timeStream = NSDate(timeIntervalSince1970: TimeInterval(objChat.createdAt.toDouble))
+                    let date = CommonMethods.timeAgoSinceDate(date: timeStream, numericDates:true)
+                    cell.lblDateTime.text = date
+                    cell.messageAttachment.clipsToBounds = true
+                    cell.delegate = self as tapOnMessageAttachementReciever
+                    return cell
+                }
+                
+            }
+        }else{
+            if objChat.attachment_type == ""{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SenderCell", for: indexPath) as! SenderCell
+                
+                let msg = getEmoji(name:objChat.message)
+                
+                cell.message.attributedText = msg
+                cell.message.textColor = UIColor.gray
+                cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                
+                let timeStream = NSDate(timeIntervalSince1970: TimeInterval(objChat.createdAt.toDouble))
+                let date = CommonMethods.timeAgoSinceDate(date: timeStream, numericDates:true)
+                cell.time.text = date
+                cell.messageBackground.backgroundColor = UIColor.groupTableViewBackground
+                var imageUrl = ""
+                print(objChat.sender.image)
+                if objChat.sender.image != nil {
+                    imageUrl = objChat.sender.image
+                }
+                if let url = URL(string: imageUrl) {
+                    
+                    cell.profilePic.sd_setImage(with: URL(string: String(describing: url)), placeholderImage: UIImage(named: "placeHolderGenral"))
+                    cell.profilePic.sd_setShowActivityIndicatorView(true)
+                    cell.profilePic.sd_setIndicatorStyle(.gray)
+                    cell.profilePic.clipsToBounds = true
+                }else{
+                    // cell.profilePic.image
+                }
+                return cell
+                
+            }
+            else{
+                if objChat.attachment_type == "video/quicktime"{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "SenderCellWithImage", for: indexPath) as! SenderCellWithImage
+                    let msg = getEmoji(name:objChat.message)
+                    
+                    cell.message.attributedText = msg
+                    cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                    //    cell.message.text = objChat.message
+                    cell.message.textColor = UIColor.gray
+                    cell.videoPlayerButton.isHidden = false
+                    cell.messageBackground.backgroundColor = UIColor.groupTableViewBackground
+                    cell.messageAttachment.sd_setImage(with: URL(string: objChat.attachment), placeholderImage: UIImage(named: "placeHolderGenral"))
+                    cell.messageAttachment.sd_setShowActivityIndicatorView(true)
+                    cell.messageAttachment.sd_setIndicatorStyle(.gray)
+                    //                    cell.messageAttachment.contentMode = .scaleToFill
+                    cell.messageAttachment.clipsToBounds = true
+                    var imageUrl = ""
+                    print(objChat.sender.image)
+                    if objChat.sender.image != nil {
+                        imageUrl = objChat.sender.image
+                    }
+                    if let url = URL(string: imageUrl) {
+                        cell.profilePic.sd_setImage(with: URL(string: String(describing: url)), placeholderImage: UIImage(named: "placeHolderGenral"))
+                        cell.profilePic.sd_setShowActivityIndicatorView(true)
+                        cell.profilePic.sd_setIndicatorStyle(.gray)
+                        //                        cell.profilePic.contentMode = .scaleToFill
+                        cell.profilePic.clipsToBounds = true
+                    }else{
+                        // cell.profilePic.image
+                    }
+                    cell.delegate = self as tapOnMessageAttachement
+                    return cell
+                }
+                else{
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "SenderCellWithImage", for: indexPath) as! SenderCellWithImage
+                    cell.message.text = objChat.message
+                    let msg = getEmoji(name:objChat.message)
+                    
+                    cell.message.attributedText = msg
+                    cell.message.font = UIFont(name: "Lato-Semibold", size: 16)
+                    cell.message.textColor = UIColor.gray
+                    cell.videoPlayerButton.isHidden = true
+                    cell.messageBackground.backgroundColor = UIColor.groupTableViewBackground
+                    cell.messageAttachment.sd_setImage(with: URL(string: objChat.attachment), placeholderImage: UIImage(named: "placeHolderGenral"))
+                    cell.messageAttachment.sd_setShowActivityIndicatorView(true)
+                    cell.messageAttachment.sd_setIndicatorStyle(.gray)
+                    let timeStream = NSDate(timeIntervalSince1970: TimeInterval(objChat.createdAt.toDouble))
+                    let date = CommonMethods.timeAgoSinceDate(date: timeStream, numericDates:true)
+                    
+                    cell.lblDateTime.text = date
+                    //                    cell.messageAttachment.contentMode = .scaleToFill
+                    cell.messageAttachment.clipsToBounds = true
+                    var imageUrl = ""
+                    print(objChat.sender.image)
+                    if objChat.sender.image != nil {
+                        imageUrl = objChat.sender.image
+                    }
+                    if let url = URL(string: imageUrl) {
+                        cell.profilePic.sd_setImage(with: URL(string: String(describing: url)), placeholderImage: UIImage(named: "placeHolderGenral"))
+                        cell.profilePic.sd_setShowActivityIndicatorView(true)
+                        cell.profilePic.sd_setIndicatorStyle(.gray)
+                        //                        cell.profilePic.contentMode = .scaleToFill
+                        cell.profilePic.clipsToBounds = true
+                    }else{
+                        // cell.profilePic.image
+                    }
+                    cell.delegate = self as tapOnMessageAttachement
+                    return cell
+                }
+                
+            }
+            
+        }
+        
+    }
+    // this method handles row deletion
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let alert = UIAlertController(title: "Delete Conversation", message: "Do you really want to delete this conversation?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+                self.deleteConversationMessages (messageId:String(self.dataArray[indexPath.row].id), indexId: indexPath.row,indexPathid: indexPath)
+                
+            }))
+            alert.addAction(UIAlertAction(title: "CANCEL", style: UIAlertAction.Style.default, handler: { action in
+                
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete"
+    }
+    
+    @IBAction func feelingsButtonAction(_ sender: Any) {
+        let conversationID2 = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        self.keyboardhide = false
+        
+        self.socket.emit("typing-end", with: [conversationID2])
+        view.endEditing(true)
+        if !isKeyboardOpened2 && !isKeyboardToggling2 {
+            UIView.animate(withDuration: 0.10, animations: {
+                self.updateTableContentInset()
+                
+                
+                self.bottomConstraint.constant  = 250
+                self.tblView.reloadData()
+                self.updateTableContentInset()
+                if( self.dataArray.count == 0) {
+                    
+                }
+                else{
+                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                    
+                }
+                
+                //  self.tableView.scrollToBottom(animated: true)
+            }, completion: { _ in
+                // self.bottomConstraint.constant = 0
+                self.isKeyboardOpened2 = true
+            })
+            
+            self.viewMainContainer.isHidden = false
+            print("feelings button pressed")
+        }
+        if isKeyboardOpened2 && !isKeyboardToggling2 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.viewMainContainer.isHidden = true
+                self.keyboardhide = false
+                
+                self.updateTableContentInset()
+                self.bottomConstraint.constant = 0
+                //                self.tableView.scrollToBottom(animated: true)
+            }, completion: { _ in
+                
+                
+                self.isKeyboardOpened2 = false
+            })
+            
+        }
+        //            let controller = self.storyboard?.instantiateViewController(withIdentifier: "FeelingsViewController") as! FeelingsViewController
+        //            self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    // MARK: - UITextFieldDelegates
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        self.bottomConstraint.constant = 0
+        self.actionSend("Anything")
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.txtMessage.resignFirstResponder()
+    }
+    
+    // MARK: - IBActions
+    @IBAction func actionSend(_ sender: Any) {
+        
+        userEmoji = ""
+        var fileUrl2 : URL?
+        if let url = pickedImnageUrl{
+            
+            if (  self.txtMessage.text.count) > 0 {
+                self.postMessageWithAttachment(FilePath: url,Comments:  self.txtMessage.text)
+            }
+            else if url != nil{
+                self.postMessageWithAttachment(FilePath: url,Comments:"")
+            }
+        }
+        else if let videoUrl = videoURL{
+            if (  self.txtMessage.text.count) > 0 {
+                if let thumbnailImage = CommonMethods.getThumbnailImage(forUrl: videoUrl){
+                    saveThumnailFileToDocumentsDirectory(image: thumbnailImage)
+                    fileUrl2 = thumnailUrl
+                }
+                self.postMessageWithVideoAttachment(FilePath: videoUrl,Comments:  self.txtMessage.text, thumbNailUrl: fileUrl2!)
+            }
+            else{
+                if let thumbnailImage = CommonMethods.getThumbnailImage(forUrl: videoUrl){
+                    saveThumnailFileToDocumentsDirectory(image: thumbnailImage)
+                    fileUrl2 = thumnailUrl
+                }
+                self.postMessageWithVideoAttachment(FilePath: videoUrl,Comments:"", thumbNailUrl: fileUrl2!)
+            }
+        }else if let _docURL = docURL{
+            print("post documnet shoud be called")
+            serverCallForUploadingDocuments ()
+        }
+        else{
+            if (  self.txtMessage.text.count) > 0 {
+                self.postChatMessage()
+            }
+        }
+        
+        // self.updateTableContentInset()
+    }
+    
+    @IBAction func actionDiscardAttachment(_ sender: Any) {
+        self.discardAttachmentChanges()
+    }
+    
+    func showAlrt (message: String){
+        let alert = CommonMethods.showBasicAlert(message: message)
+        self.present(alert, animated: true,completion: nil)
+    }
+    
+    @IBAction func actionAddAttachment(_ sender: Any) {
+        
+        if self.addMedia == false{
+            
+            // create an actionSheet
+            let actionSheetController: UIAlertController = UIAlertController(title: "Selection Option".localized, message: nil, preferredStyle: .actionSheet)
+            
+            // create an action
+            let selectPhotoes: UIAlertAction = UIAlertAction(title: "Select Photo".localized, style: .default) { action -> Void in
+                let imagePickerController = ImagePickerController()
+                imagePickerController.imageLimit = 1
+                imagePickerController.delegate = self
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+            
+            let selectVideos: UIAlertAction = UIAlertAction(title: "Select Video".localized, style: .default) { action -> Void in
+                self.openImgPicker()
+            }
+            
+            //            let recordVideos: UIAlertAction = UIAlertAction(title: "Record and save videos", style: .default) { action -> Void in
+            ////                let vc = videoRecorderViewController() //change this to your class name
+            ////                self.present(vc, animated: true, completion: nil)
+            //                let controller = self.storyboard?.instantiateViewController(withIdentifier: "videoRecorderViewController") as! videoRecorderViewController
+            //                self.navigationController?.pushViewController(controller, animated: true)
+            //            }
+            
+            
+            let selectDocument: UIAlertAction = UIAlertAction(title: "Select Document".localized, style: .default) { action -> Void in
+                print("select document called")
+                let fileExplorer = FileExplorerViewController()
+                fileExplorer.allowsMultipleSelection = false
+                fileExplorer.fileFilters = [Filter.extension("txt"), Filter.extension("jpg")]
+                fileExplorer.canChooseFiles=true
+                fileExplorer.delegate = self
+                self.present(fileExplorer, animated: true, completion: nil)
+            }
+            
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel".localized, style: .cancel) { action -> Void in }
+            // add actions
+            actionSheetController.addAction(selectPhotoes)
+            actionSheetController.addAction(selectVideos)
+            //             actionSheetController.addAction(recordVideos)
+            actionSheetController.addAction(selectDocument)
+            actionSheetController.addAction(cancelAction)
+            // present an actionSheet...
+            present(actionSheetController, animated: true, completion: nil)
+        }
+        else{
+            self.displayAlertMessage("Please cancel previous attachment or proceed first with previous attachment than add other media.")
+        }
+    }
+    
+    // MARK: - API Calls
+    func getConversationMessages () {
+        
+        self.showLoader()
+        var dictionaryForm = Dictionary<String, String>()
+        dictionaryForm = [
+            "receiver_id" : "\(recevierId)"
+        ]
+        print(dictionaryForm)
+        
+        ConversationsHandler.getConversationMessages(params: dictionaryForm as NSDictionary, success: { (successResponse) in
+            print(successResponse)
+            if successResponse.statusCode == 200 {
+                self.dataArray = successResponse.data
+                if self.dataArray.count > 0 {
+                    self.tblView.reloadData()
+                    self.updateTableContentInset()
+                    if( self.dataArray.count == 0) {
+                        
+                    }
+                    else{
+                        self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+                        
+                    }                }
+                self.stopAnimating()
+            }
+            
+        }) { (errorResponse) in
+            print(errorResponse!)
+            self.stopAnimating()
+        }
+    }
+    
+    // MARK: - API Calls
+    func serverCallForUploadingDocuments (){
+        
+        
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        self.socket.emit("typing-end", with: [conversationID])
+        
+        //        if !isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //
+        //                self.bottomConstraint.constant  = 250
+        //                self.tblView.reloadData()
+        //                self.updateTableContentInset()
+        //                if( self.dataArray.count == 0) {
+        //
+        //                }
+        //                else{
+        //                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+        //
+        //                }
+        //
+        //                //  self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //                // self.bottomConstraint.constant = 0
+        //                self.isKeyboardOpened2 = true
+        //            })
+        //
+        //            self.viewMainContainer.isHidden = false
+        //            print("feelings button pressed")
+        //        }
+        //        if isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //                self.viewMainContainer.isHidden = true
+        //
+        //                self.bottomConstraint.constant = 0
+        //                //                self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //
+        //
+        //                self.isKeyboardOpened2 = false
+        //            })
+        //
+        //        }
+        
+        self.showLoader()
+        //        var dictionaryForm = Dictionary<String, String>()
+        //
+        //        var feelingId = 0
+        //
+        //        if FeedsHandler.sharedInstance.objFeeling != nil{
+        //            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        //        }
+        //
+        
+        //   let uurl = self.docURL
+        let imgData = try? Data(contentsOf: self.docURL!)
+        //   let imageFromUrl = UIImage(data: data!)
+        
+        //   let image = imageFromUrl
+        //let imageData = UIImageJPEGRepresentation(image, 0.9)
+        //    let imgData: NSData = NSData(data: UIImageJPEGRepresentation((image)!, 0.25)!)
+        
+        
+        let imageSize: Int = imgData!.count
+        print("size of image in B: %f ", Double(imageSize) )
+        
+        
+        
+        
+        
+        let imageDataforSever = [
+            "name":   "test.jpg",
+            "size" : Double(imageSize)
+            ] as [String : Any]
+        
+        
+        print(imageDataforSever)
+        self.socket.emit("startFileUpload", with: [imageDataforSever])
+        
+        let imageData = imgData
+        let uploadChunkSize = 102400
+        //   let uploadChunkSize = 5
+        let totalSize = imageData?.count
+        var offset = 0
+        self.socket.on("moreData") { (data, ack) in
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let moreData = MoreData.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            
+            let imageData = imgData
+            imageData?.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
+                let mutRawPointer = UnsafeMutableRawPointer(mutating: u8Ptr)
+                
+                print(totalSize)
+                print(offset)
+                
+                if (offset < totalSize!) {
+                    let chunkSize = offset + uploadChunkSize > totalSize! ? totalSize! - offset : uploadChunkSize
+                    let chunk = Data(bytesNoCopy: mutRawPointer+offset, count: chunkSize, deallocator: Data.Deallocator.none)
+                    offset += chunkSize
+                    //  let b1 = String(uploadChunkSize, radix: 2)
+                    // if let string = String(data: chunk.base64EncodedData(), encoding: .utf8) {
+                    //  if let str = String(data: chunk, encoding: String.Encoding.utf8) {
+                    
+                    let chunkSize2 = chunk.count
+                    print(chunkSize2)
+                    
+                    
+                    let imageDataupload = [
+                        "name":   "test.jpg",
+                        "data" : chunk as NSData ,
+                        "pointer" : moreData!.data!.pointer! ,
+                        
+                        "chunkSize" : chunkSize2
+                        ] as [String : Any]
+                    
+                    print(imageDataupload)
+                    
+                    self.socket.emit("uploadChunk", with: [imageDataupload])
+                    
+                    //  }
+                    
+                }
+                
+                
+            }
+        }
+        
+        
+        self.socket.on("uploadCompleted") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let chat = CompleteChat.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            if(self.onlineFriend == 0){
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "txt/jpg",
+                    "conversation_id" : self.conversationId,
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+            }
+            else{
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "txt/jpg",
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+                
+            }
+            
+            
+            self.addMedia = false
+            self.txtMessage.text = ""
+            self.discardAttachmentChanges()
+            self.stopAnimating()
+        }
+        self.stopAnimating()
+        //        self.showLoader()
+        //
+        //        var headers: HTTPHeaders
+        //        if let userToken = UserDefaults.standard.value(forKey: "userAuthToken") as? String {
+        //            headers = [
+        //                "Accept": "application/json",
+        //                "Authorization" : userToken//"Bearer \(userToken)"
+        //            ]
+        //        } else{
+        //            headers = [
+        //                "Accept": "application/json",
+        //            ]
+        //        }
+        //
+        //
+        //        var feelingId = 0
+        //
+        //        if FeedsHandler.sharedInstance.objFeeling != nil{
+        //            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        //        }
+        //        //"feeling_id" : "\(feelingId)",
+        //
+        //        let objUser = UserHandler.sharedInstance.userData
+        //        var userID: Int = (objUser?.id)!
+        //        print("user id ",userID)
+        //
+        //        var parameters : [String: Any]
+        //        parameters = [
+        //            "feeling_id" : "\(feelingId)",
+        //            "receiver_id" : recevierId,
+        //        ]
+        //
+        //        let url = ApiCalls.baseUrlBuild + ApiCalls.postConversationMessage
+        //
+        //        print("save  documnet url",url)
+        //
+        //        Alamofire.upload(multipartFormData:  { multipartFormData in
+        //
+        //            let uurl = self.docURL
+        //            let data = try? Data(contentsOf: uurl!)
+        //            let imageFromUrl = UIImage(data: data!)
+        //
+        //
+        //            if let image = imageFromUrl    {
+        //                let imageData = UIImageJPEGRepresentation(image, 0.9)
+        //
+        //                let imageName = "attachment"
+        //                let fileName = imageName + ".jpg"
+        //                let imageSize = Double(imageData!.count)
+        //
+        //                print("\(imageName) size in KB = \(imageSize/1024.0)")
+        //
+        //                multipartFormData.append(data!, withName: imageName, fileName: fileName, mimeType: "any")
+        //            }
+        //
+        //            for (key, value) in parameters  {
+        //                multipartFormData.append(String(describing: value).data(using:.utf8, allowLossyConversion: false)!, withName: key)
+        //            }
+        //
+        //        }, usingThreshold: UInt64(), to: url, method: .post, headers: headers, encodingCompletion: { encodingResult in
+        //            switch encodingResult {
+        //            case .success(let upload, _, _):
+        //                upload.responseJSON { response in
+        //                    print(response)
+        //                    self.discardAttachmentChanges()
+        //                    self.showAlrt(message: "Successfully Uploaded")
+        //                    self.stopAnimating()
+        //                    self.dismiss(animated: true, completion: nil)
+        //
+        //                }
+        //
+        //            case .failure(let encodingError):
+        //                print(encodingError)
+        //                print("RESPONSE ERROR: \(encodingError)")
+        //                self.showAlrt(message: "RESPONSE ERROR: \(encodingError)")
+        //                self.stopAnimating()
+        //
+        //            }
+        //        })
+        
+    }
+    
+    
+    
+    
+    func deleteConversationMessages (messageId:String,indexId: Int, indexPathid: IndexPath) {
+        self.showLoader()
+        var dictionaryForm = Dictionary<String, String>()
+        dictionaryForm = [
+            "message_id" : messageId
+        ]
+        print(dictionaryForm)
+        
+        ConversationsHandler.deleteConversationMessage(params: dictionaryForm as NSDictionary, success: { (successResponse) in
+            print(successResponse)
+            if successResponse.statusCode == 200 {
+                self.dataArray.remove(at: indexId)
+                self.tblView.reloadData()
+                self.tblView.deleteRows(at: [indexPathid], with: .left)
+                self.stopAnimating()
+            }
+        }) { (errorResponse) in
+            print(errorResponse!)
+            self.stopAnimating()
+        }
+    }
+    // MARK: - API Calls
+    func postChatMessage (){
+        
+        
+        let conversationID2 = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        
+        
+        self.socket.emit("typing-end", with: [conversationID2])
+        //        if !isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //
+        //               self.bottomConstraint.constant = 0
+        //                self.tblView.reloadData()
+        //                self.updateTableContentInset()
+        //               // self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: true)
+        //
+        //                //  self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //                // self.bottomConstraint.constant = 0
+        //                self.isKeyboardOpened2 = true
+        //            })
+        //
+        //            self.viewMainContainer.isHidden = true
+        //            print("feelings button pressed")
+        //        }
+        //        if isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //                self.viewMainContainer.isHidden = true
+        //
+        //                self.bottomConstraint.constant = 0
+        //                //                self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //
+        //
+        //                self.isKeyboardOpened2 = false
+        //            })
+        //
+        //        }
+        self.showLoader()
+        var dictionaryForm = Dictionary<String, String>()
+        var feelingId = 0
+        
+        if FeedsHandler.sharedInstance.objFeeling != nil{
+            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        }
+        
+        dictionaryForm = [
+            "feeling_id" : "\(feelingId)",
+            "receiver_id" : "\(recevierId)",
+            "message" :   "\(self.txtMessage.text!)",
+        ]
+        
+        //   chat_group_id:integer, fileName: string }
+        if(self.onlineFriend == 0){
+            let conversationID = [
+                "receiver_id": "\(self.recevierId)",
+                "message" :   self.txtMessage.text,
+                "mime_type" : "text",
+                "conversation_id" : self.conversationId
+                
+                ] as [String : Any]
+            
+            // handle connected
+            
+            
+            self.socket.emit("sendMessage", with: [conversationID])
+        }
+        else{
+            let conversationID = [
+                "receiver_id": "\(self.recevierId)",
+                "message" :   self.txtMessage.text,
+                "mime_type" : "text",
+                
+                ] as [String : Any]
+            
+            // handle connected
+            
+            
+            self.socket.emit("sendMessage", with: [conversationID])
+        }
+        
+        self.txtMessageValue = ""
+        self.combination  = NSMutableAttributedString()
+        self.txtMessage.text = ""
+        self.stopAnimating()
+        //        print(dictionaryForm)
+        //        ConversationsHandler.postConversationMessage(params: dictionaryForm as NSDictionary, success: { (successResponse) in
+        //            print(successResponse)
+        //            if successResponse.statusCode == 200 {
+        //                self.getConversationMessages()
+        //                self.txtMessage.text = ""
+        //            }
+        //        }) { (errorResponse) in
+        //            print(errorResponse!)
+        //        }
+    }
+    
+    func postMessageWithAttachment (FilePath:URL, Comments:String){
+        
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        self.socket.emit("typing-end", with: [conversationID])
+        
+        //        if !isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //
+        //                self.bottomConstraint.constant = 0
+        //                self.tblView.reloadData()
+        //                self.updateTableContentInset()
+        //                if( self.dataArray.count == 0) {
+        //
+        //                }
+        //                else{
+        //                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+        //
+        //                }
+        //                //  self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //                // self.bottomConstraint.constant = 0
+        //                self.isKeyboardOpened2 = true
+        //            })
+        //
+        //            self.viewMainContainer.isHidden = true
+        //            print("feelings button pressed")
+        //        }
+        //        if isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //                self.viewMainContainer.isHidden = true
+        //
+        //                self.bottomConstraint.constant = 0
+        //                //                self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //
+        //
+        //                self.isKeyboardOpened2 = false
+        //            })
+        //
+        //        }
+        
+        self.showLoader()
+        var dictionaryForm = Dictionary<String, String>()
+        
+        var feelingId = 0
+        
+        if FeedsHandler.sharedInstance.objFeeling != nil{
+            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        }
+        
+        
+        //   let uurl = self.docURL
+        let data = try? Data(contentsOf: FilePath)
+        let imageFromUrl = UIImage(data: data!)
+        
+        let image = imageFromUrl
+        //let imageData = UIImageJPEGRepresentation(image, 0.9)
+        let imgData: NSData = NSData(data: (image?.jpegData(compressionQuality: 1.0))!)
+        
+        
+        let imageSize: Int = imgData.length
+        print("size of image in B: %f ", Double(imageSize) )
+        
+        print(imgData as Data)
+        
+        
+        
+        let imageDataforSever = [
+            "name":   "test.png",
+            "size" : Double(imageSize)
+            ] as [String : Any]
+        
+        
+        print(imageDataforSever)
+        self.socket.emit("startFileUpload", with: [imageDataforSever])
+        self.socket.on("startUpload") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            
+            print(dictionary)
+            
+        }
+        
+        let imageData = imgData as Data
+        let uploadChunkSize = 102400
+        //   let uploadChunkSize = 5
+        let totalSize = imageData.count
+        var offset = 0
+        self.socket.on("moreData") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let moreData = MoreData.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            
+            let imageData = imgData as Data
+            imageData.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
+                let mutRawPointer = UnsafeMutableRawPointer(mutating: u8Ptr)
+                
+                print(totalSize)
+                // while offset < totalSize {
+                
+                let chunkSize = offset + uploadChunkSize > totalSize ? totalSize - offset : uploadChunkSize
+                let chunk = Data(bytesNoCopy: mutRawPointer+offset, count: chunkSize, deallocator: Data.Deallocator.none)
+                offset += chunkSize
+                //  let b1 = String(uploadChunkSize, radix: 2)
+                //    if let string = String(data: chunk.base64EncodedData(), encoding: .utf8) {
+                //  if let str = String(data: chunk, encoding: String.Encoding.utf8) {
+                
+                let chunkSize2 = chunk.count
+                
+                
+                
+                let imageDataupload = [
+                    "name":   "test.png",
+                    "data" : chunk as NSData ,
+                    "pointer" : moreData!.data!.pointer! ,
+                    "chunkSize" : chunkSize2
+                    ] as [String : Any]
+                
+                print(imageDataupload)
+                
+                self.socket.emit("uploadChunk", with: [imageDataupload])
+                
+                
+                
+                
+                // }
+                
+                //  }
+            }
+        }
+        
+        
+        self.socket.on("uploadCompleted") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let chat = CompleteChat.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            
+            
+            if(self.onlineFriend == 0){
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "image/jpeg",
+                    "conversation_id" : self.conversationId,
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+            }
+            else{
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "image/jpeg",
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+                
+            }
+            
+            self.txtMessageValue = ""
+            self.combination  = NSMutableAttributedString()
+            self.addMedia = false
+            self.txtMessage.text = ""
+            self.discardAttachmentChanges()
+            
+            self.stopAnimating()
+            
+            
+        }
+        //        print(dictionaryForm)
+        //        ConversationsHandler.postCoversationMessageWithAttachment(fileUrl: FilePath, params: dictionaryForm as NSDictionary, success: { (successResponse) in
+        //            print(successResponse)
+        //            if successResponse.statusCode == 200 {
+        //                self.addMedia = false
+        //                self.getConversationMessages()
+        //                self.discardAttachmentChanges()
+        //                //self.stopAnimating()
+        //            }
+        //        }) { (errorResponse) in
+        //            print(errorResponse!)
+        //            //self.stopAnimating()
+        //        }
+        
+    }
+    func postMessageWithVideoAttachment (FilePath:URL, Comments:String, thumbNailUrl:URL){
+        let conversationID = [
+            "receiver_id":  self.recevierId,
+            "chat_group_id":  0,
+            "conversation_id":conversationId
+            
+            
+        ]
+        self.socket.emit("typing-end", with: [conversationID])
+        //        if !isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //
+        //                self.bottomConstraint.constant = 0
+        //                self.tblView.reloadData()
+        //                self.updateTableContentInset()
+        //                if( self.dataArray.count == 0) {
+        //
+        //                }
+        //                else{
+        //                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+        //
+        //                }
+        //                //  self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //                // self.bottomConstraint.constant = 0
+        //                self.isKeyboardOpened2 = true
+        //            })
+        //
+        //            self.viewMainContainer.isHidden = true
+        //            print("feelings button pressed")
+        //        }
+        //        if isKeyboardOpened2 && !isKeyboardToggling2 {
+        //            UIView.animate(withDuration: 0.10, animations: {
+        //                self.viewMainContainer.isHidden = true
+        //
+        //                self.bottomConstraint.constant = 0
+        //                //                self.tableView.scrollToBottom(animated: true)
+        //            }, completion: { _ in
+        //
+        //
+        //                self.isKeyboardOpened2 = false
+        //            })
+        //
+        //        }
+        
+        self.showLoader()
+        //        var dictionaryForm = Dictionary<String, String>()
+        //
+        //        var feelingId = 0
+        //
+        //        if FeedsHandler.sharedInstance.objFeeling != nil{
+        //            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        //        }
+        //
+        
+        //   let uurl = self.docURL
+        let imgData = try? Data(contentsOf: FilePath)
+        //   let imageFromUrl = UIImage(data: data!)
+        
+        //   let image = imageFromUrl
+        //let imageData = UIImageJPEGRepresentation(image, 0.9)
+        //    let imgData: NSData = NSData(data: UIImageJPEGRepresentation((image)!, 0.25)!)
+        
+        
+        let imageSize: Int = imgData!.count
+        print("size of image in B: %f ", Double(imageSize) )
+        
+        
+        
+        
+        
+        let imageDataforSever = [
+            "name":   "test.mp4",
+            "size" : Double(imageSize)
+            ] as [String : Any]
+        
+        
+        print(imageDataforSever)
+        self.socket.emit("startFileUpload", with: [imageDataforSever])
+        
+        let imageData = imgData
+        let uploadChunkSize = 102400
+        //   let uploadChunkSize = 5
+        let totalSize = imageData?.count
+        var offset = 0
+        self.socket.on("moreData") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let moreData = MoreData.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            
+            let imageData = imgData
+            imageData?.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
+                let mutRawPointer = UnsafeMutableRawPointer(mutating: u8Ptr)
+                
+                print(totalSize)
+                print(offset)
+                
+                if (offset < totalSize!) {
+                    let chunkSize = offset + uploadChunkSize > totalSize! ? totalSize! - offset : uploadChunkSize
+                    let chunk = Data(bytesNoCopy: mutRawPointer+offset, count: chunkSize, deallocator: Data.Deallocator.none)
+                    offset += chunkSize
+                    //  let b1 = String(uploadChunkSize, radix: 2)
+                    // if let string = String(data: chunk.base64EncodedData(), encoding: .utf8) {
+                    //  if let str = String(data: chunk, encoding: String.Encoding.utf8) {
+                    
+                    let chunkSize2 = chunk.count
+                    print(chunkSize2)
+                    
+                    
+                    let imageDataupload = [
+                        "name":   "test.mp4",
+                        "data" : chunk as NSData ,
+                        "pointer" : moreData!.data!.pointer! ,
+                        
+                        "chunkSize" : chunkSize2
+                        ] as [String : Any]
+                    
+                    print(imageDataupload)
+                    
+                    self.socket.emit("uploadChunk", with: [imageDataupload])
+                    
+                    //  }
+                    
+                }
+                
+                
+            }
+        }
+        
+        
+        self.socket.on("uploadCompleted") { (data, ack) in
+            
+            
+            
+            let modified =  (data[0] as AnyObject)
+            
+            let dictionary = modified as! [String: AnyObject]
+            let chat = CompleteChat.init(dictionary: dictionary as NSDictionary)
+            print(dictionary)
+            
+            if(self.onlineFriend == 0){
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "video/quicktime",
+                    "conversation_id" : self.conversationId,
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+            }
+            else{
+                let conversationID = [
+                    "receiver_id": "\(self.recevierId)",
+                    "mime_type" : "video/quicktime",
+                    "message" :   self.txtMessage.text,
+                    "attachment" : chat!.data!.fileName!
+                    ] as [String : Any]
+                //            let conversationID = [
+                //                "conversation":  self.user.conversationID,
+                //                "type" : "image/jpeg"
+                //              //  "fileName" : chat?.data?.fileName!
+                //                ] as [String : Any]
+                print(conversationID)
+                
+                self.socket.emit("sendMessage", with: [conversationID])
+                
+            }
+            
+            self.combination  = NSMutableAttributedString()
+            self.addMedia = false
+            self.txtMessage.text = ""
+            self.txtMessageValue = ""
+            self.discardAttachmentChanges()
+            self.stopAnimating()
+        }
+        //        self.showLoader()
+        //        var dictionaryForm = Dictionary<String, String>()
+        //
+        //        var feelingId = 0
+        //
+        //        if FeedsHandler.sharedInstance.objFeeling != nil{
+        //            feelingId = (FeedsHandler.sharedInstance.objFeeling?.id)!
+        //        }
+        //        //"feeling_id" : "\(feelingId)",
+        //
+        //        dictionaryForm = [
+        //            "feeling_id" : "\(feelingId)",
+        //            "receiver_id" : "\(recevierId)",
+        //            "message" : Comments,
+        //            //            "" : self.pickedImnageUrl
+        //        ]
+        //        print(dictionaryForm)
+        //      ConversationsHandler.postCoversationMessageWithVideoAttachment(fileUrl: FilePath,fileUrl2: thumbNailUrl, params: dictionaryForm as NSDictionary, success: { (successResponse) in
+        ////        ConversationsHandler.postCoversationMessageWithAttachment(fileUrl: FilePath, params: dictionaryForm as NSDictionary, success: { (successResponse) in
+        //            print(successResponse)
+        //            if successResponse.statusCode == 200 {
+        //                self.addMedia = false
+        //                self.getConversationMessages()
+        //                self.discardAttachmentChanges()
+        //                //self.stopAnimating()
+        //            }
+        //        }) { (errorResponse) in
+        //            print(errorResponse!)
+        //            //self.stopAnimating()
+        //        }
+        
+    }
+    
+    func updateAttachmentConstraint(){
+        self.imageViewBottomAttachment.isHidden = false
+        self.btmDiscardAttachment.isHidden = false
+        self.viewImageAtt.isHidden = false
+        //    self.attachmentImageConstOne.constant = 40
+        //  self.attachmentImageConstTwo.constant = 5
+        self.imageViewBottomAttachment.layer.borderWidth = 1
+    }
+    func discardAttachmentChanges(){
+        self.pickedImnageUrl = nil
+        self.videoURL = nil
+        self.imageViewBottomAttachment.isHidden = true
+        self.btmDiscardAttachment.isHidden = true
+        self.viewImageAtt.isHidden = true
+        //   self.attachmentImageConstOne.constant = 5
+        // self.attachmentImageConstTwo.constant = 5
+        self.imageViewBottomAttachment.image = nil
+        self.txtMessage.text = ""
+        self.addMedia = false
+    }
+}
+
+
+
+
+////MARK:- Keyboard Extension
+//extension MessagesViewController: KeyboardObserver {
+//    override func keyboardWillShowWithFrame(_ frame: CGRect) {
+//        if !isKeyboardOpened && !isKeyboardToggling {
+//            UIView.animate(withDuration: 0.10, animations: {
+//
+//                var keyboardHeight = frame.height
+//                if #available(iOS 11.0, *) {
+//                    let bottomInset = self.view.safeAreaInsets.bottom
+//                    keyboardHeight -= bottomInset
+//                }
+//
+//                self.bottomConstraint.constant  = keyboardHeight
+//                   self.tblView.reloadData()
+//                self.updateTableContentInset()
+//                if( self.dataArray.count == 0) {
+//
+//                }
+//                else{
+//                    self.tblView.scrollToRow(at: IndexPath.init(row: self.dataArray.count - 1, section: 0), at: .bottom, animated: false)
+//
+//                }
+//                self.viewMainContainer.isHidden = true
+//                   //  self.tableView.scrollToBottom(animated: true)
+//            }, completion: { _ in
+//                let conversationID = [
+//                    "receiver_id":  self.recevierId,
+//                    "chat_group_id":  0,
+//                    "conversation_id": self.conversationId
+//
+//
+//                ]
+//                self.socket.emit("typing-end", with: [conversationID])
+//                if let _navTitle = self.navTitle {
+//                    //  self.navigationItem.titleView = self.setTitle(title: _navTitle, subtitle: ".")
+//
+//                    self.title = _navTitle
+//                } else  {
+//                    self.title = "Messages"
+//                }
+//                self.viewMainContainer.isHidden = true
+//                self.isKeyboardOpened2 = false
+//                self.isKeyboardOpened = true
+//            })
+//        }
+//    }
+//    override func keyboardWillHideWithFrame(_ frame: CGRect) {
+//        if isKeyboardOpened && !isKeyboardToggling {
+//            UIView.animate(withDuration: 0.10, animations: {
+//                self.viewMainContainer.isHidden = true
+//                let conversationID = [
+//                    "receiver_id":  self.recevierId,
+//                    "chat_group_id":  0,
+//                    "conversation_id": self.conversationId
+//
+//
+//                ]
+//                self.socket.emit("typing-end", with: [conversationID])
+//                self.bottomConstraint.constant = 0
+//                //                self.tableView.scrollToBottom(animated: true)
+//            }, completion: { _ in
+//
+//                self.isKeyboardOpened2 = false
+//                self.isKeyboardOpened = false
+//            })
+//        }
+//    }
+//}
+
+extension MessagesViewController: ViewStateProtocol {
+    var errorMessage: String? {
+        get {
+            return "You have no new message".localized
+        }
+        set {
+            self.errorMessage = "You have no new message".localized
+        }
+    }
+    
+    
+    @objc func handleTap(_ sender: UIView) {
+        
+        addView(withState: .loading)
+        
+        addView(withState: .error)
+        
+        addView(withState: .empty)
+        
+        removeAllViews()
+    }
+}
+
+// MARK:- Sender Cell Delegate Extension
+extension MessagesViewController: tapOnMessageAttachement {
+    
+    internal func sendCellIndex(cell: SenderCellWithImage)
+    {
+        let item = tblView.indexPath(for: cell)
+        
+        if dataArray[item!.item].attachment_type == "video/quicktime"{
+            
+            let videoAttachment = dataArray[item!.item].attachment
+            let videoURL = URL(string: videoAttachment!)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
+        else if dataArray[item!.item].attachment_type == "image/jpeg"{
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "displayImageViewController") as! displayImageViewController
+            controller.imageString = dataArray[item!.item].attachment
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+// MARK:- Receiver Cell Delegate Extension
+extension MessagesViewController: tapOnMessageAttachementReciever {
+    
+    internal func ReceiverSendCellIndex(cell: RecieverCellWithAttachment)
+    {
+        let item = tblView.indexPath(for: cell)
+        
+        if dataArray[item!.item].attachment_type == "video/quicktime"{
+            
+            let videoAttachment = dataArray[item!.item].attachment
+            let videoURL = URL(string: videoAttachment!)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
+        else if dataArray[item!.item].attachment_type == "image/jpeg"{
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "displayImageViewController") as! displayImageViewController
+            controller.imageString = dataArray[item!.item].attachment
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+extension MessagesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
+        print("videoURL:\(String(describing: videoURL))")
+        self.imageViewBottomAttachment.image = UIImage(named: "File")
+        self.updateAttachmentConstraint()
+        self.addMedia = true
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+// MARK: - File Exporer Methods Delegates
+
+extension MessagesViewController: FileExplorerViewControllerDelegate {
+    func fileExplorerViewController(_ controller: FileExplorerViewController, didChooseURLs urls: [URL]) {
+        var message = ""
+        for url in urls {
+            
+            docURL =  url
+            message += "\(url.lastPathComponent)"
+            if url != urls.last {
+                message += "\n"
+            }
+        }
+        
+        //        let alertController = UIAlertController(title: "Choosen files", message: message, preferredStyle: .alert)
+        //        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //        self.present(alertController, animated: true, completion: nil)
+        
+        print("choosen file url is.. ", docURL)
+        
+        self.imageViewBottomAttachment.image = UIImage(named: "add_story")
+        self.updateAttachmentConstraint()
+        self.addMedia = true
+        
+    }
+    
+    func fileExplorerViewControllerDidFinish(_ controller: FileExplorerViewController) {
+        
+    }
+}
+extension MessagesViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    // MARK: - Collection View Delegate Methods
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(iconsArray.count)
+        return iconsArray.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let myCell = EmojiCollection.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as! EmojiCell
+        let iconsObject = self.iconsArray[indexPath.row]
+        if let imgUrl = URL(string: iconsObject.image!) {
+            print(imgUrl)
+            myCell.EmojiImage.sd_setImage(with: imgUrl, placeholderImage:UIImage(named: "sunny"))
+        }
+        
+        
+        return myCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        let iconsObject = self.iconsArray[indexPath.row]
+        userEmoji = userEmoji + iconsObject.name!
+        
+        
+        var emojiName = ""
+        var emojiNametxt = ""
+        
+        var attributedString = NSMutableAttributedString(string: "")
+        let iconsSize = CGRect(x: 0, y: -5, width: 20, height: 20)
+        
+        
+        for i in 0 ..<  self.user.EmojiArray.count {
+            var icons = [Icons]()
+            icons = self.user.EmojiArray[i].icons!
+            
+            for k in 0 ..<  icons.count {
+                
+                
+                if(icons[k].name! == iconsObject.name!){
+                    
+                    emojiName = iconsObject.name!
+                    emojiNametxt = iconsObject.name!
+                    
+                    emojiName.removeFirst()
+                    emojiName.removeLast()
+                    
+                    print(emojiName)
+                    var image1Attachment = NSTextAttachment()
+                    image1Attachment.image = UIImage(named:emojiName+".png")
+                    image1Attachment.bounds = iconsSize
+                    
+                    let image1String = NSAttributedString(attachment: image1Attachment)
+                    
+                    attributedString.insert(image1String,at: 0 )
+                    
+                    
+                }
+                else{
+                    
+                }
+            }
+            // self.enArr.append(tit)
+        }
+        if(emojiName == ""){
+            // cell.message.text = objChat.message
+        }
+        else
+        {
+            //  cell.message.text = ""
+            // cell.message.backgroundColor = UIColor(patternImage: UIImage(named: "done-1")!)
+        }
+        
+        //   attributedString2 = [attributedString2.appendAttributedStringattributedString];
+        
+        txtMessageValue = emojiNametxt
+        
+        
+        
+        
+        
+        //     let combination = NSMutableAttributedString()
+        
+        combination.append(attributedString)
+        
+        print(combination)
+        
+        
+        //     self.txtMessage.attributedText =  combination
+        self.txtMessage.text = self.txtMessage.text + txtMessageValue
+        
+        //   txtMessageValue =  self.txtMessage.text
+        
+        var test = self.txtMessage.text
+        
+        print( self.txtMessage.attributedText)
+        
+        
+        //  let msg = getEmoji(name : test!)
+        
+        //  self.txtMessage.attributedText = msg
+        
+        
+        //        let selectedIndex = indexPath.row
+        //        let viewPush = self.storyboard?.instantiateViewController(withIdentifier: "CategoryVC") as! CategoryVC
+        //        let categoryDatt = cattArr[indexPath.row]
+        //        self.user.isFrom = ""
+        //        if lang == "ar" {
+        //            viewPush.controllerTitle = categoryDatt.title.arabicCategories
+        //        }else if lang == "en" {
+        //            viewPush.controllerTitle = categoryDatt.title.englishCategories
+        //        }
+        //        viewPush.selectedCellId = categoryDatt.categoryId
+        //        self.navigationController?.pushViewController(viewPush, animated: true)
+    }
+}

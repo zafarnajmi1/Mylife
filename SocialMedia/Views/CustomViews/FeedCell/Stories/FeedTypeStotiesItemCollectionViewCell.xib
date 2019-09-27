@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedTypeStotiesItemCollectionViewCell" customModule="SocialMedia" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonAddStory" destination="fvk-d0-1jk" id="3dn-X3-XDW"/>
+                <outlet property="imageViewUser" destination="dYL-Fs-enq" id="7Vz-j4-BDF"/>
+                <outlet property="labelUserName" destination="7X2-bK-itE" id="m4P-g8-yOG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eme-9F-QjL">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face_Android" translatesAutoresizingMaskIntoConstraints="NO" id="dYL-Fs-enq">
+                            <rect key="frame" x="10" y="2" width="60" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="GYv-os-1Ws"/>
+                                <constraint firstAttribute="width" constant="60" id="OCV-z0-Kgh"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="debugFaceAware" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="focusOnFaces" value="NO"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvk-d0-1jk">
+                            <rect key="frame" x="56" y="2" width="18" height="18"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="KeQ-EW-dii"/>
+                                <constraint firstAttribute="width" constant="18" id="Xji-zw-81C"/>
+                            </constraints>
+                            <state key="normal" image="add_story"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X2-bK-itE">
+                            <rect key="frame" x="0.0" y="66" width="80" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="dDF-8B-zBj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                            <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="7X2-bK-itE" firstAttribute="leading" secondItem="Eme-9F-QjL" secondAttribute="leading" id="2LE-ZZ-GbC"/>
+                        <constraint firstAttribute="trailing" secondItem="fvk-d0-1jk" secondAttribute="trailing" constant="6" id="CRB-te-5JV"/>
+                        <constraint firstAttribute="bottom" secondItem="7X2-bK-itE" secondAttribute="bottom" constant="2" id="LDf-3j-iQp"/>
+                        <constraint firstItem="dYL-Fs-enq" firstAttribute="centerX" secondItem="Eme-9F-QjL" secondAttribute="centerX" id="W3K-lX-Ddd"/>
+                        <constraint firstItem="fvk-d0-1jk" firstAttribute="top" secondItem="Eme-9F-QjL" secondAttribute="top" constant="2" id="pYe-ev-dGP"/>
+                        <constraint firstAttribute="trailing" secondItem="7X2-bK-itE" secondAttribute="trailing" id="v7v-rR-EvT"/>
+                        <constraint firstItem="dYL-Fs-enq" firstAttribute="top" secondItem="Eme-9F-QjL" secondAttribute="top" constant="2" id="yLc-28-IwU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Eme-9F-QjL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6PC-o6-Ieg"/>
+                <constraint firstAttribute="bottom" secondItem="Eme-9F-QjL" secondAttribute="bottom" id="Kjq-D2-mtJ"/>
+                <constraint firstAttribute="trailing" secondItem="Eme-9F-QjL" secondAttribute="trailing" id="MMT-6W-UNb"/>
+                <constraint firstItem="Eme-9F-QjL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="R1v-6G-cTW"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="add_story" width="500" height="500"/>
+        <image name="face_Android" width="400" height="400"/>
+    </resources>
+</document>

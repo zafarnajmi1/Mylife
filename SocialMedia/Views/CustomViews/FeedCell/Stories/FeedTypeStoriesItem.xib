@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Semibold.ttf">
+            <string>Lato-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedTypeStoriesItem" customModule="SocialMedia" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="6B9-31-KXE" id="FMv-Ci-xVj"/>
+                <outlet property="collectionViewContainer" destination="5Sa-PG-SFs" id="SFT-5t-jXv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sa-PG-SFs">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="6B9-31-KXE">
+                            <rect key="frame" x="8" y="32" width="359" height="100"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kRV-Tb-x7E">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Story" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dul-9W-HXi">
+                            <rect key="frame" x="8" y="0.0" width="359" height="24"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="pEj-Zm-eQz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="16"/>
+                            <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="20"/>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="dul-9W-HXi" firstAttribute="top" secondItem="5Sa-PG-SFs" secondAttribute="top" id="9rg-KB-xVe"/>
+                        <constraint firstAttribute="trailing" secondItem="6B9-31-KXE" secondAttribute="trailing" constant="8" id="LXb-lj-ygJ"/>
+                        <constraint firstAttribute="trailing" secondItem="dul-9W-HXi" secondAttribute="trailing" constant="8" id="Q3A-nQ-wo8"/>
+                        <constraint firstItem="6B9-31-KXE" firstAttribute="leading" secondItem="5Sa-PG-SFs" secondAttribute="leading" constant="8" id="RfU-bA-NSf"/>
+                        <constraint firstItem="6B9-31-KXE" firstAttribute="top" secondItem="dul-9W-HXi" secondAttribute="bottom" constant="8" id="ZV3-gA-Hrf"/>
+                        <constraint firstAttribute="bottom" secondItem="6B9-31-KXE" secondAttribute="bottom" constant="8" id="mgz-Tx-fl8"/>
+                        <constraint firstItem="dul-9W-HXi" firstAttribute="leading" secondItem="5Sa-PG-SFs" secondAttribute="leading" constant="8" id="qzx-vJ-cIC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="5Sa-PG-SFs" secondAttribute="bottom" id="CF3-KV-7qe"/>
+                <constraint firstAttribute="trailing" secondItem="5Sa-PG-SFs" secondAttribute="trailing" id="MVv-27-K3b"/>
+                <constraint firstItem="5Sa-PG-SFs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="chn-st-kPX"/>
+                <constraint firstItem="5Sa-PG-SFs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pwm-cm-2U2"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-48.5" y="149"/>
+        </view>
+    </objects>
+</document>

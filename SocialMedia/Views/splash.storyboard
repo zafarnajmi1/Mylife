@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m48-Zz-oB4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="EYK-iY-JhA"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="667" id="OSf-8I-NKF"/>
+                                    <constraint firstAttribute="width" constant="375" id="P0a-O7-fsg"/>
+                                    <constraint firstAttribute="width" secondItem="m48-Zz-oB4" secondAttribute="height" multiplier="375:667" id="bV0-RX-01E"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="q31-Zh-ZfB">
+                                <rect key="frame" x="42" y="231" width="290" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="5mF-XB-UnB"/>
+                                    <constraint firstAttribute="height" constant="172" id="khV-xa-gNs"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="q31-Zh-ZfB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-16.5" id="4Vv-Ga-ebf"/>
+                            <constraint firstItem="q31-Zh-ZfB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9AO-Iz-oKG"/>
+                            <constraint firstItem="m48-Zz-oB4" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" id="EsL-Tv-wcx"/>
+                            <constraint firstItem="m48-Zz-oB4" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="S82-DK-dF2"/>
+                            <constraint firstItem="m48-Zz-oB4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="gD2-Xo-pjG"/>
+                            <constraint firstItem="m48-Zz-oB4" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="sNt-96-ytp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg" width="1080" height="1920"/>
+        <image name="logo" width="412" height="244"/>
+    </resources>
+</document>

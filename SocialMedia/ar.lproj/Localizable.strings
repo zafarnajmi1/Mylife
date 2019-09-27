@@ -1,0 +1,532 @@
+/*
+ Localizable.strings
+ SocialMedia
+ 
+ Created by My Technology on 28/09/2018.
+ Copyright © 2018 My Technology. All rights reserved.
+ */
+
+//Login
+"Sign In" = "تسجيل الدخول";
+"Enter Email"  = "أدخل البريد الإلكتروني";
+"Email/Phone Number" = "البريد الإلكتروني / رقم الهاتف";
+"Password" = "كلمة المرور";
+"Login" = "تسجيل الدخول";
+"Create New Account" = "انشاء حساب جديد. تسجيل؟";
+"Forgot Password?" = "هل نسيت كلمة المرور؟";
+"Make New Friends" = "تكوين صداقات جديدة";
+//Sign Up
+"Register" = "تسجيل";
+"Name" = "الاسم";
+"Email" = "البريد الإلكتروني";
+"Phone" = "هاتف";
+"Password" = "كلمة المرور";
+"Confirm Password" = "تأكيد كلمة المرور";
+"Date of Birth" = "تاريخ الولادة";
+"Date" = "تاريخ";
+"Month" = "شهر";
+"Year" = "عام";
+"Gender" = "الجنس";
+"Male" = "ذكر";
+"Female" = "أنثى";
+"male" = "ذكر";
+"female" = "أنثى";
+"Already Have Account?" = "هل لديك حساب بالفعل؟";
+"single" = "أعزب";
+
+//Forgot Password
+"Forgot Your Password?" = "نسيت رقمك السري";
+"Enter your email below to receive your reset password instruction" = "أدخل بريدك الإلكتروني أدناه لتلقي تعليمات إعادة تعيين كلمة المرور الخاصة بك";
+"SEND" = "إرسال";
+
+//NewsFeed
+"You" = "أنت";
+"Stories" = "قصص";
+"What's On Your Mind" = "في ماذا تفكر";
+"Whats on your mind?" = "في ماذا تفكر";
+//Notifications
+
+"No Notifications found" = "لم يتم العثور على طلبات الصداقة";
+"years ago" = "سنين مضت";
+"1 year ago" = "منذ سنة 1";
+"weeks ago" =  "منذ أسابيع";
+
+//Friends
+"No Friend requests found" = "لم يتم العثور على طلبات الصداقة";
+"Pull to refresh" = "سحب لتحديث";
+" Like" = "اعجاب";
+"Like" = "اعجاب";
+"Comment" = "تعليق";
+"Share" = "شارك";
+"Share" = "شارك";
+" Comment" = "تعليق";
+" Share" = "شارك";
+"Selection Option" = "خيار الاختيار";
+"Share with everyone" = "شارك مع الجميع";
+"Share with friends" = "شارك مع الاصدقاء";
+"Share on my timeline" = "شارك في المخطط الزمني الخاص بي";
+"Do you really want to share this post on your timeline?" = "هل تريد حقًا مشاركة هذه المشاركة على مخططك الزمني؟";
+"Cancel" = "إلغاء";
+"Do you really want to share this post with your friends?" = "هل تريد حقًا مشاركة هذه المشاركة على مخططك الزمني؟";
+"Do you really want to share this post on your timeline?" = "هل تريد حقًا مشاركة هذه المشاركة على مخططك الزمني؟";
+"Ok" = "حسنا";
+"OK" = "حسنا";
+"OK" = "حسنا";
+"Do you really want to share this post as public post?" = "هل تريد حقًا مشاركة هذه المشاركة على مخططك الزمني؟";
+"Share Post" = "مشاركة المنشور";
+"Schedule Sharing" = "جدولة المشاركة";
+"Do you want to schedule this share?" = "هل تريد جدولة هذه المشاركة؟";
+"Yes" = "نعم فعلا";
+"Schedule Post" = "الجدول الزمني";
+"NO! JUST SHARE IT NOW" = "لا! فقط شاركه الآن";
+"Pick from Camera" = "اختر من الكاميرا";
+"Pick from Gallery" = "اختر من المعرض";
+"CANCEL" = "إلغاء";
+"Cancel" = "إلغاء";
+
+
+//Slide In
+"My Profile" = "ملفي الشخصي";
+"Contacts" = "جهات الاتصال";
+"My Schedules" = "المجدولة";
+
+"Saved Stories" = "قصص محفوظة";
+"Sent Requests" = "الطلبات المرسلة";
+"Blocked Contacts" = "قائمة الحظر";
+"App Settings" = "إعدادات التطبيقات";
+"Help" = "مساعدة";
+"Log Out" = "الخروج";
+
+//Profile
+
+"Profile" = "الملف الشخصي";
+"followers" = "متابعيني";
+"following" = "أتابعهم";
+"Followers" = "متابعيني";
+"Conversations" = "المحادثات";
+"Delete" = "حذف";
+"My Life" = "ماي لايف";
+
+//All Friends
+"All Friends" = "كل الأصدقاء";
+"No Friends found, Pull to refresh" = "لم يتم العثور على أصدقاء ، اسحب للتحديث";
+"UN FRIEND" = "الغاء الصداقه";
+
+//Post Details
+"Post Details" = "تفاصيل المشاركة";
+"Contacts" = "جهات الاتصال";
+"Import Contacts" = "استيراد جهات الاتصال";
+"UnSelect All" = "إلغاء تحديد الكل";
+"Select All" = "اختر الكل";
+"Export Contacts" = "تصدير جهات الاتصال";
+
+//AboutVC
+"Birthday" = "تاريخ الميلاد";
+"Gender" = "الجنس";
+"Relationship Status" = "الحالة الاجتماعية";
+"Failed to Communicate with Server or Request is taking too much time! Please check your internet connection or wait for server to respond." = "فشل التواصل مع الخادم أو الطلب يأخذ الكثير من الوقت! يرجى التحقق من اتصالك بالإنترنت أو الانتظار حتى يستجيب الخادم.";
+"User Info" = "الملف الشخصي للمستخدم";
+"Edit" = "تعديل";
+"Documents" = "المستندات";
+"Saved Stories" = "قصص محفوظة";
+"Network Time Out, Please Try Again." = "وقت انتهاء الشبكة ، يرجى إعادة المحاولة.";
+"No saved stories found" = "لم يتم العثور على أي قصص محفوظة";
+"Pull to refresh" = "سحب لتحديث";
+
+//Sent Request
+"Sent Request" = "إرسال الطلب";
+"No sent request found" = "لم يتم العثور على أي قصص محفوظة";
+"CANCEL REQUEST" = "حذف الطلب";
+"Cancel Request" = "حذف الطلب";
+"Do you want to cancel this request" = "هل تريد الغاء الطلب";
+
+//App setting
+"Friend Request" = "طلبات الصداقة";
+"Request Accepted" = "قبول الطلب";
+"Post Like" = "مشاركة";
+"Post Comment" = "اضافة تعليق";
+"Post Share" = "مشاركة المشاركة";
+"App Language" = "لغة التطبيق";
+"English" = "الإنجليزية";
+"Arabic" = "العربية";
+"Remember my choice" = "تذكر خياري";
+"Reset Your Password?" = "اعد ضبط كلمه السر؟";
+"App Settings" = "إعدادات التطبيقات";
+"Get Notification For" = "احصل على إشعارات";
+"My life is an amazing social media application for people who love to celebrate their life in fun and collaboration. Have unique experience of getting friends and people and enjoy the aspects of a better social world. We provide scheduling your friends birthday’s also your own posts." = "إن ما لايف عبارة حول تطبيق مدهش للتواصل الاجتماعي للأشخاص الذين يحبون الاحتفال بحياتهم في جو من المرح والتعاون. تمتع بتجربة فريدة في الحصول على الأصدقاء والناس والتمتع بجوانب من عالم اجتماعي أفضل. نحن نقدم جدولة عيد ميلاد أصدقائك أيضا مشاركاتك الخاصة.";
+"Leave us a message" = "اكتب/ي لنا سؤالك";
+"SEND" = "إرسال";
+
+
+//documents
+"DELETE" = "حذف";
+"EDIT" = "تعديل";
+"VIEW FILE" = "استعراض الملف";
+"Documents" = "المستندات";
+"VIDEOS" = "الفيديو";
+"Videos" = "الفيديو";
+"PHOTOS" = "الصور";
+"Photos" = "الصور";
+"All POSTS" = "جميع المشاركات";
+"PEOPLE" = "اشخاص";
+"Search Here" = "ابحث هنا";
+"No result found" = "لم يتم العثور على نتائج";
+"Try something else:)" = "جرب شيئاً آخر";
+"Are you sure you want to remove this post?" = "هل أنت متأكد من أنك تريد إزالة هذه المشاركة؟";
+"Alert" = "تنبيه";
+
+//Chat
+"You have no new message" = "لا يوجد لديك رسالة جديدة";
+"You have no new conversation" = "لا يوجد لديك رسالة جديدة";
+"Delete Notification" = "حذف الإشعار";
+"Are you sure you want to delete this notification?" = "هل أنت متأكد من أنك تريد حذف هذا الإشعار؟";
+"Clear Notification" = "تم مسح الإشعارات";
+"Do you want to clear notification" = "هل تريد حذف الاشعار";
+"Are you sure you want to Clear this notification?" = "هل تريد مسح الإشعارات؟";
+"Group Members" = "أعضاء المجموعة";
+"Please specify group name" = "يرجى تحديد اسم المجموعة";
+"Please select atleast one group member" = "يرجى اختيار واحد على الأقل من أعضاء المجموعة";
+"Group Name" = "اسم المجموعة";
+"Create Group" = "أنشئ";
+
+"Write a comment..." = "أكتب تعليقا...";
+"Replies" = "الردود";
+"Loading..." = "جار التحميل...";
+"Error" = "خطأ";
+"Comments" = "تعليقات";
+"Group Chat" = "تعليقات";
+"Search text is empty." = "لا يوجد لديك رسالة جديدة";
+
+
+//Time Stamp //error Bug
+
+"years ago" = "سنين مضت";
+"1 year ago" = "منذ سنة 1";
+"weeks ago" =  "منذ أسابيع";
+"Last year" = "العام الماضي";
+"months ago" = "منذ اشهر";
+"1 month ago" = "1 قبل شهر";
+"Last month" = "الشهر الماضي";
+"1 week ago" = "1 قبل أسبوع";
+"Last week" = "الاسبوع الماضي";
+"days ago" = "أيام مضت";
+"1 day ago" = "1 منذ يوم";
+"Yesterday" = "في الامس";
+"hours ago" = "منذ ساعات";
+"1 hour ago" = "منذ 1 ساعة";
+"An hour ago" = "منذ ساعة";
+"minutes ago" = "دقائق مضت";
+"1 minute ago" = "منذ 1 دقيقة";
+"A minute ago" = "منذ دقيقة";
+"seconds ago" = "منذ ثوانى";
+"Just now" = "في هذة اللحظة";
+
+//Write Post
+"Write Post" = "كتابة المشاركة";
+"Public" = "عام";
+"Friends only" = "الأصدقاء فقط";
+"On my timeline" = "في المخطط الزمني الخاص بي";
+"Post" =  "نشر";
+"Video" = "فيديو";
+"Feelings" = "مشاعر";
+"Check in" = "الموقع";
+"Tag Friends" = "ذكر الأصدقاء";
+//"علامة الأصدقاء";
+"Schedule Post" = "جدولة المنشور";
+"Schedule Birthday" = "جدولة عيد الميلاد";
+"Select Video From Gallery" = "اختر فيديو من المعرض";
+"Open Video Camera" = "فتح كاميرا فيديو";
+"Check In" = "الموقع";
+"Get Places" = "احصل على الأماكن";
+
+//Tag Friends
+"TAG" = " ذكر";
+//"بطاقة";
+"UN TAG" = "علامة";
+"DONE" = "تم";
+"Done" = "تم";
+"No Schedules Added" = "لا الجداول المضافة";
+"To add a new schedule please click on plus icon" = "لإضافة جدول جديد ، يرجى النقر على رمز";
+
+"Done" = "تم";
+"Friends" = "الأصدقاء";
+
+"Select Photo" = "اختر الصور";
+"Select Video" = "اختر فيديو";
+"Select Document" = "اختر الوثيقة";
+"Select a document" = "اختر وثيقة";
+"Privacy" = "الإجمالية";
+"Public" = "عام";
+"Private" = "نشر";
+"Add Document" = "إضافة وثيقة";
+"File Name Required" = "اسم الملف مطلوب";
+"Edit Document" = "تحرير المستند";
+
+"please write what's on your mind" = "في ماذا تفكر";
+"No account select for import" = "لا الجداول المضافة";
+"Contacts are imported successfully" = "اختر فيديو من المعرض";
+"Duplicate Contact Found" = "تم العثور على جهة اتصال مكررة";
+"Contacts Exports Successfully" = "اختر فيديو من المعرض";
+"Scheduled Posts" = "المنشورات المجدولة";
+"Sort Scheduled Posts" = "فرز المنشورات المجدولة";
+"SORT" = "فرز";
+"REMOVE POST" = "إزالة وظيفة";
+"Do you really want to remove this post?" = "هل تريد حقًا إزالة هذا المنشور؟";
+"No Scheduled post found" = "لم يتم العثور على مشاركة مجدولة";
+"Pull to refresh :)" = "سحب لتحديث :)";
+
+"Old To New" = "من الأقدم الى الأحدث";
+"New To Old" = "من الأحدث الى الأقدم";
+"Watch All" = "مشاهدة ◀︎";
+//"Following Now" = "تمت ا لمتابعة";
+"Successfully Followed" = "تمت ا لمتابعة";
+//"تمت ا لمتابعة"//"تابع بنجاح";
+"Successfully Un-Followed" = "تم الغاء ا لمتابعة";
+//"تابع بنجاح";
+"About" = "حول";
+//"Type Comment..." = "تبصرہ ٹائپ کریں ...";
+
+"Following Now" = "تمت ا لمتابعة";
+"followers " = "متابعيني";
+"following " = "أتابعهم";
+"Reply" = "الرد";
+"Successfully Delete" = "تم الحذف بنجاح";
+"Successfully Clear" = "تم الحذف بنجاح";
+"Password should be more than 6 characters" = "يجب أن تكون كلمة المرور أكثر من 6 أحرف";
+"Please Enter Your Question" = "من فضلك أدخل سؤالك";
+"Please Enter Valid Email Address" = "الرجاء إدخال عنوان بريد إلكتروني صالح";
+"Please Enter Email Address" = "الرجاء إدخال عنوان البريد الإلكتروني";
+"Please Enter Your Name" = "من فضلك أدخل إسمك";
+"Thankyou for contacting us, we'll get back to you soon!" = "نشكرك على الاتصال بنا ، وسنوافيك بالرد قريبًا!";
+"Success" = "تم بنجاح";
+"Your query" = "الموضوع";
+"No friend found" = "لم يتم العثور على صديق";
+"No Contact found. Please Go to Settings and allow contacts in privacy settings" = "م يتم العثور على جهة اتصال، يرجي الذهاب إلى الإعدادات و السماح للتطبيق بالوصول إلى جهات الاتصال من إعدادات";
+
+//relationship Status that wasn't mentioned in sheet took it from google translate
+"engaged" = "مخطوب";
+"married" = "متزوج";
+"widowed" = "أرمل";
+"seperated" = "منفصل";
+"divorced" = "مطلقة";
+
+
+
+//Saved Stories
+"DELETE" = "حذف";
+"Remove Story" = "إزالة القصة";
+"Are you sure you want to remove this story?" = "هل أنت متأكد من أنك تريد إزالة هذه القصة؟";
+"Successfully Deleted" = "تم الحذف بنجاح";
+//"Edit Comment" =  "تعديل التعليق";
+
+
+"Unblock" = "رفع الحظر";
+"Block Contact Request" = "حظر طلب الاتصال";
+"Block" = "حظر";
+"Edit Comment" =  "تعديل المستند";
+"Add Friend" = "أضف صديق";
+"Unfriend" = "الغاء الصداقه";
+"Saved!" = "تم الحفظ";
+"Picture has been saved to your photos" = "تم حفظ الصورة";
+"Successfully Canceled" = "تم الإلغاء بنجاح";
+"New Password" = "كلمة المرور الجددة";
+"Confirm Password" = "تأكيد كلمو المرور";
+"Old Password" = "كلمة المرور القديمة";
+"Reset Password" = "إعادة تعيين كلمة السر";
+"Reset Your Password" = "إعادة تعيين كلمة السر";
+"Enter your old, new and confirm new password" = "ضع كلمة السر القديمة والجديدة وقم بالتأكيد";
+"Please enter old password" = "الرجاء إدخال كلمة المرور الجديدة";
+"Old password require minimum of 6 characters" = "تتطلب كلمة المرور القديمة بحد أدنى 6 أحرف";
+"Please enter new password" = "الرجاء إدخال كلمة المرور الجديدة";
+"New password require minimum of 6 characters" = "تتطلب كلمة المرور القديمة بحد أدنى 6 أحرف";
+"Please enter confirm password" = "الرجاء إدخال كلمة المرور الجديدة";
+"Confirm password require minimum of 6 characters" = "تتطلب كلمة المرور القديمة بحد أدنى 6 أحرف";
+"Password not match" = "كلمة السر ليست جيدة";
+"Success" = "تم بنجاح";
+"No" = "لا";
+"Alter" = "تغير";
+"Are you sure! you want to report this post" = "هل أنت واثق! تريد الإبلاغ عن هذه المشاركة";
+
+"Do you really want to block this contact?" = "هل تريد حقًا حظر جهة الاتصال هذه؟";
+"Please Enter Name" = "من فضلك أدخل الاسم";
+"Please enter email" = "يرجى إدخال البريد الإلكتروني";
+"Email is not valid" = "البريد الإلكتروني غير صالح";
+"Please enter phone number" = "يرجى إدخال رقم الهاتف";
+"Phone number, Minimum 10 Characters required" = "رقم الهاتف ، والحد الأدنى 10 أحرف المطلوبة";
+"Phone number, should not be greater then 15 Characters" = "رقم الهاتف ، يجب ألا يكون أكبر من 15 حرفًا";
+"Phone number is not valid" = "رقم الهاتف غير صالح";
+"Please enter password" = "يرجى إدخال كلمة المرور";
+"Password require minimum of 6 characters" = "تتطلب كلمة المرور 6 أحرف كحد أدنى";
+"Please enter confirm password" = "من فضلك أدخل كلمة مرور تأكيد";
+"Confirm Password, Minimum 6 Characters required" = "تتطلب كلمة المرور 6 أحرف كحد أدنى";
+"Password not match" = "كلمة السر ليست جيدة";
+"Please select gender" = "يرجى تحديد الجنس";
+"Please set date of birth" = "يرجى تحديد تاريخ الميلاد";
+
+"Save Story" = "حفظ القصة";
+"Are you sure you want to save this story?" = "هل أنت متأكد من أنك تريد حفظ هذه القصة؟";
+"Successfully Saved" = "حفظ بنجاح";
+"Do you really want to remove this user as friend?" = "هل تريد ازالة هذا ا لمستخدم من قائمة ا لأصدقا؟";
+//"Do you really want to remove this user as friend?" = "هل تريد حقًا إزالة هذا المستخدم كصديق ؟";
+
+"The story is added to your profile" = "تم اضافة القصة الى صفحتك";
+"Story saved successfully" = "تم حفظ القصة بنجاح";
+"wants to be your friend" = "يريد أن يصبح صديقك";
+"New Friend Request" = "طلب صداقة جديد";
+
+
+
+
+
+"The comment field is required when attachment is not present" = "حقل التعليق مطلوب عندما لا يكون المرفق موجودًا";
+"commented on your" = "علقت على الخاص بك";
+"New Comment" = "تعليق جديد";
+"accepts your friend request" = "وافق على طلب الصداقة";
+//"accepts your friend request" = "يقبل طلب صديقك";
+"Request Accepted" = "قبول الطلب";
+" post" = "بريد ";
+
+//google
+
+"Blocked Contacts" = "قائمة الحظر";
+
+
+
+"Terms and Conditions" = "الأحكام والشروط";
+"terms & conditions" = "الشروط والأحكام";
+"I agree with" = "أنا موافق على";
+
+
+// Edit profile
+"Edit Profile" = "تعديل الملف الشخصي";
+"Engaged" = "مخطوب";
+"Married" = "متزوج";
+"Widowed" = "أرمل";
+"Seperated" = "منفصل";
+"Divorced" = "مطلقة";
+"Single" = "أعزب";
+"single" = "أعزب";
+"Textfield cannot be empty." = "لا يمكن أن يكون حقل Textfield فارغًا.";
+"Only Me" = "فقط أنا";
+"only_me" = "فقط أنا";
+"Add work" = "إضافة عمل";
+"Add education" = "إضافة التعليم";
+"Birthday" = "تاريخ ا لميلاد";
+"Where did you work?" = "اسم الشركة؟";
+"Position" = "ا لمسمى الوظيفي";
+"City" = "ا لمدينة";
+"From" = "من";
+"Description" = "الوصف";
+"To" = "إلى";
+"Add Work" = "إضافة عمل";
+"Add Education" = "إضافة التعليم";
+"Your Institute" = "اسم الجامعة أو ا لمدرسة";
+"Degree Title" = "الدرجة العلمية / المؤهل العلمي";
+"Save" = "حفظ";
+"Update User Information" = "تحديث معلومات المستخدم";
+"Please edit username and then save it" = "يرجى تعديل اسم المستخدم ثم احفظه";
+"Please edit location and then save it" = "يرجى تعديل الموقع ثم حفظه";
+"Enter location" = "إدخال الدولة";
+"Please edit phone number and then save it" = "يرجى تعديل رقم الهاتف ثم احفظه";
+"Enter phone" = "ادخل الهاتف";
+"Please edit about and then save it" = "يرجى تعديلها ثم حفظها";
+"Enter about you" = "أدخل عنك";
+"Only Me" = "فقط أنا";
+"Friends" = "الأصدقاء";
+"Public" = "عام";
+"Error" = "خطأ";
+"Please Enter Email Address" = "الرجاء إدخال عنوان البريد الإلكتروني";
+"Please Enter Valid Email Address" = "الرجاء إدخال عنوان بريد إلكتروني صالح";
+"Please Enter Password" = "من فضلك أدخل كلمة المرور";
+"Password should be more than 6 characters"  = "يجب أن تكون كلمة المرور أكثر من 6 أحرف";
+"You want to Logout?" = "تريد الخروج؟";
+"Alert" = "تنبيه";
+"Yes" = "نعم فعلا";
+"No Contact found. Please Go to Settings and allow contacts in privacy settings" = "م يتم العثور على جهة اتصال، يرجي الذهاب إلى الإعدادات و السماح للتطبيق بالوصول إلى جهات الاتصال من إعدادات";
+
+"Do you really want to logout from My Life?" = "هل تريد حقًا الخروج من ماي لايف";
+
+"Logout" = "الخروج";
+
+"CANCEL" = "إلغاء";
+
+"Are you sure you want to Accept Request?" = "هل أنت متأكد من أنك تريد قبول الطلب؟";
+
+"Accept Request" = "قبول الطلب";
+"Cancel" = "إلغاء";
+"Please Enter Where Did You Work Details" = "الرجاء ادخال تفاصيل مكان عملك السابق";
+"Please Enter Where You Have Studied" = "الرجاء أدخل أين درست";
+
+"Please Enter Your Education Title"  = "يرجى إدخال عنوان التعليم الخاص بك";
+
+"Please Enter From Date" = "يرجى الدخول من التاريخ";
+
+"Please Enter To Date" = "يرجى الدخول إلى التاريخ";
+
+
+
+"Please Enter Your Position" = "يرجى إدخال موقفك";
+"Please Enter Your City"  = "يرجى إدخال مدينتك";
+"Please Enter Description" = "يرجى ادخال الوصف";
+"Please Enter From Date" = "يرجى الدخول من التاريخ";
+"Please Enter To Date"  = "يرجى الدخول إلى التاريخ";
+"No Contacts Found" = "لا يوجد تفاصيل لعرضه";
+
+"CANCEL REQUEST" =  "حذف الطلب";
+
+"Are you sure you want to share this post?" = "هل أنت متأكد أنك تريد مشاركة المنشور";
+
+"Yes" = "نعم";
+"Cancel" = "أغلق";
+"User Blocked Successfully" = "تم حظر المستخدم بنجاح";
+"No record found" = "لا يوجد سجلات";
+"Type Comment..." = "اكتب كيف ...";
+
+"Image Saved" = "الصورة المحفوظة";
+"Image successfully saved to Photos library" = "تم حفظ الصورة بنجاح في مكتبة الصور";
+"Unable to capture media" = "غير قادر على التقاط الوسائط";
+
+"Alert message when something goes wrong during capture session configuration" = "رسالة تنبيه عند حدوث خطأ ما أثناء تكوين جلسة الالتقاط";
+
+
+
+
+"AVCam doesn't have permission to use the camera, please change privacy settings" = "ليس لدى AVCam الإذن باستخدام الكاميرا ، الرجاء تغيير إعدادات الخصوصية";
+
+"Alert message when the user has denied access to the camera" = "رسالة تنبيه عندما رفض المستخدم الدخول إلى camera";
+"Settings" = "الإعدادات";
+"Blocked User Removed Successfully" = "تم حظر المستخدم المحظور بنجاح";
+" is at " = " في ";
+" feeling " = " شعور ";
+"is feeling " = "يشعر ";
+"Please Accept Terms and Conditons to Processed" = "Please Accept Terms and Conditons to Processed";
+"Studied" = "درس";
+"Success" = "تم بنجاح";
+" at " = " في ";
+"DatePicker" = "منتقي التاريخ";
+"Network Time Out, Please Try Again." = "مهلة الشبكة ، يرجى المحاولة مرة أخرى.";
+
+
+"Save error" = "حفظ الخطأ";
+"Saved!" = "Saved!";
+"Picture has been saved to your photos" = "تم حفظ الصورة في صورك";
+
+"Selection Option" = "اختيار الخيار";
+"Share with everyone" = "شارك مع الجميع";
+"Do you really want to share this post as public post?" = "هل تريد حقًا مشاركة هذا المنشور كمشاركة عامة؟";
+"Share with friends" = "شارك مع الاصدقاء";
+"Do you really want to shate this post with your friends?" = "هل تريد حقًا نشر هذا المنشور مع أصدقائك؟";
+"Share on my timeline" = "مشاركة على خط زمني";
+"Do you really want to shate this post on your timeline?" = "هل تريد حقًا تحطيم هذا المنشور وفقًا لجدولك الزمني؟";
+
+
+"TAGGED" = "مميز بعلامات";
+"Checked into " = "دققت في ";
+
+"No schedule post available" = "لا يوجد جدول زمني متاح";
+
+
+"No Upcoming Birthdays Found \n Tap to refresh" = "لا يوجد بيانات لعرضها";
+"Up Coming Birthdays" = "أعياد ميلاد قادمة";
+"Remove" = "إزالة";
+"Please write what's on your mind" = "في ماذا تفكر";

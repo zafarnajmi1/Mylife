@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Terms And ConditionVC-->
+        <scene sceneID="Jxa-zX-mP7">
+            <objects>
+                <viewController storyboardIdentifier="TermsAndConditionVC" id="AS5-x9-bZV" customClass="TermsAndConditionVC" customModule="My_Life_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dbi-b3-aND">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qVo-6D-K3Z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TermsAndConditionTableViewCell" rowHeight="76" id="7rT-ww-pMR" customClass="TermsAndConditionTableViewCell" customModule="My_Life_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rT-ww-pMR" id="spf-GF-NTq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-Ly-Cih">
+                                                    <rect key="frame" x="15" y="11" width="345" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-ef-ixt">
+                                                    <rect key="frame" x="15" y="43.5" width="345" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UEr-Ly-Cih" firstAttribute="leading" secondItem="spf-GF-NTq" secondAttribute="leadingMargin" id="5tD-X5-ibX"/>
+                                                <constraint firstItem="UEr-Ly-Cih" firstAttribute="trailing" secondItem="spf-GF-NTq" secondAttribute="trailingMargin" id="8el-uu-O5F"/>
+                                                <constraint firstItem="lVU-ef-ixt" firstAttribute="leading" secondItem="spf-GF-NTq" secondAttribute="leadingMargin" id="8mu-mB-Fx7"/>
+                                                <constraint firstItem="UEr-Ly-Cih" firstAttribute="top" secondItem="spf-GF-NTq" secondAttribute="topMargin" id="OwN-1D-wgI"/>
+                                                <constraint firstItem="lVU-ef-ixt" firstAttribute="top" secondItem="UEr-Ly-Cih" secondAttribute="bottom" constant="12" id="Q4q-7i-GMq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lVU-ef-ixt" secondAttribute="bottom" constant="1" id="WZ0-od-Rmz"/>
+                                                <constraint firstItem="lVU-ef-ixt" firstAttribute="trailing" secondItem="spf-GF-NTq" secondAttribute="trailingMargin" id="s1G-cD-yAv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="myDetailLabel" destination="lVU-ef-ixt" id="4rJ-X2-5WU"/>
+                                            <outlet property="myTitleLabel" destination="UEr-Ly-Cih" id="ONq-Ot-PDA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="AS5-x9-bZV" id="T65-t2-uMh"/>
+                                    <outlet property="delegate" destination="AS5-x9-bZV" id="26j-qu-qo3"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSK-sp-Erg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Terms and Conditions" id="AWB-pp-X9f">
+                                        <barButtonItem key="rightBarButtonItem" title="     X   " id="lEq-GQ-3QP">
+                                            <connections>
+                                                <action selector="closeBtnTapped:" destination="AS5-x9-bZV" id="M1i-es-gZZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qVo-6D-K3Z" firstAttribute="bottom" secondItem="oOX-kG-oLu" secondAttribute="bottom" id="6bY-BP-mjp"/>
+                            <constraint firstItem="qVo-6D-K3Z" firstAttribute="leading" secondItem="oOX-kG-oLu" secondAttribute="leading" id="URw-rT-HDT"/>
+                            <constraint firstItem="wSK-sp-Erg" firstAttribute="leading" secondItem="oOX-kG-oLu" secondAttribute="leading" id="VJJ-lI-Ucw"/>
+                            <constraint firstItem="wSK-sp-Erg" firstAttribute="trailing" secondItem="oOX-kG-oLu" secondAttribute="trailing" id="fV5-fE-bax"/>
+                            <constraint firstItem="qVo-6D-K3Z" firstAttribute="top" secondItem="wSK-sp-Erg" secondAttribute="bottom" id="hMq-cO-LIZ"/>
+                            <constraint firstItem="wSK-sp-Erg" firstAttribute="top" secondItem="oOX-kG-oLu" secondAttribute="top" id="mRg-fN-m2w"/>
+                            <constraint firstItem="qVo-6D-K3Z" firstAttribute="trailing" secondItem="oOX-kG-oLu" secondAttribute="trailing" id="qD6-fd-5ih"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oOX-kG-oLu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="f0f-Mq-2lb"/>
+                    <connections>
+                        <outlet property="myNavigationBar" destination="wSK-sp-Erg" id="IgM-2P-bK2"/>
+                        <outlet property="tableView" destination="qVo-6D-K3Z" id="ho1-se-TP2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6JS-Ns-ksc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444" y="124.58770614692655"/>
+        </scene>
+    </scenes>
+</document>

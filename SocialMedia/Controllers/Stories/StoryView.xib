@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryView" customModule="SocialMedia" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCancel" destination="8mX-wq-fih" id="h3k-c9-G3X"/>
+                <outlet property="btnDeleteStory" destination="MqP-7M-LMd" id="yG5-gh-c4Z"/>
+                <outlet property="btnSaveStory" destination="vXQ-IX-pJp" id="Q1O-nv-XAn"/>
+                <outlet property="imgProfile" destination="mtN-i0-MiS" id="GOu-bI-gMj"/>
+                <outlet property="imgStory" destination="1ZL-eY-RUV" id="HP8-EY-qO0"/>
+                <outlet property="lblName" destination="gfZ-la-eeS" id="vO3-da-vGU"/>
+                <outlet property="lblTime" destination="ZIm-TK-0fo" id="0R5-oH-Dlm"/>
+                <outlet property="progressView" destination="lNa-bE-0Rb" id="ZZa-4g-5z5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderGenral" translatesAutoresizingMaskIntoConstraints="NO" id="1ZL-eY-RUV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXQ-IX-pJp">
+                    <rect key="frame" x="323" y="602" width="36" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="c1Q-5n-rDe"/>
+                    </constraints>
+                    <state key="normal" image="RedSave"/>
+                    <connections>
+                        <action selector="saveStoryPermanentlyButtonAction:" destination="-1" eventType="touchUpInside" id="7TX-WI-fyC"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-bE-0Rb">
+                    <rect key="frame" x="16" y="24" width="343" height="4"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="343" id="Q3C-2V-Gff"/>
+                        <constraint firstAttribute="height" constant="4" id="mwH-MT-Lhp"/>
+                    </constraints>
+                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtN-i0-MiS">
+                    <rect key="frame" x="16" y="44" width="56" height="56"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="56" id="jdD-At-Zil"/>
+                        <constraint firstAttribute="height" constant="56" id="y2X-0S-e4R"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIm-TK-0fo">
+                    <rect key="frame" x="80" y="66" width="245" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="245" id="hyw-aB-0Ih"/>
+                        <constraint firstAttribute="height" constant="18" id="iKX-xc-fBH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfZ-la-eeS">
+                    <rect key="frame" x="80" y="44" width="245" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="245" id="kVa-bp-qWf"/>
+                        <constraint firstAttribute="height" constant="18" id="pmp-j2-dxc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mX-wq-fih">
+                    <rect key="frame" x="333" y="44" width="30" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="TAE-8u-dc1"/>
+                        <constraint firstAttribute="width" constant="30" id="fOF-aO-SP4"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="cancel-cross"/>
+                    <connections>
+                        <action selector="btnCancel:" destination="-1" eventType="touchUpInside" id="O00-r0-NoI"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqP-7M-LMd">
+                    <rect key="frame" x="16" y="602" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="DfI-SK-AZY"/>
+                        <constraint firstAttribute="height" constant="45" id="egs-La-B8t"/>
+                    </constraints>
+                    <state key="normal" image="RedDelete"/>
+                    <connections>
+                        <action selector="deleteStoryAction:" destination="-1" eventType="touchUpInside" id="vvl-Uq-FcS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gfZ-la-eeS" firstAttribute="leading" secondItem="mtN-i0-MiS" secondAttribute="trailing" constant="8" id="0Ka-S1-Zte"/>
+                <constraint firstItem="ZIm-TK-0fo" firstAttribute="leading" secondItem="mtN-i0-MiS" secondAttribute="trailing" constant="8" id="0Yc-x6-2zL"/>
+                <constraint firstItem="lNa-bE-0Rb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="2SH-gp-V95"/>
+                <constraint firstItem="1ZL-eY-RUV" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="4LG-M7-anB"/>
+                <constraint firstItem="1ZL-eY-RUV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ehw-2s-Q0r"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="vXQ-IX-pJp" secondAttribute="bottom" constant="20" id="I92-Xk-aEA"/>
+                <constraint firstItem="lNa-bE-0Rb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="K1I-Q9-HmH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MqP-7M-LMd" secondAttribute="bottom" constant="20" id="K84-DS-oRO"/>
+                <constraint firstItem="8mX-wq-fih" firstAttribute="leading" secondItem="gfZ-la-eeS" secondAttribute="trailing" constant="8" id="LFX-Tp-00y"/>
+                <constraint firstItem="mtN-i0-MiS" firstAttribute="top" secondItem="lNa-bE-0Rb" secondAttribute="bottom" constant="16" id="PAu-qf-BS8"/>
+                <constraint firstItem="8mX-wq-fih" firstAttribute="leading" secondItem="ZIm-TK-0fo" secondAttribute="trailing" constant="8" id="PoI-RL-KIC"/>
+                <constraint firstItem="1ZL-eY-RUV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-20" id="U2A-n2-CE1"/>
+                <constraint firstItem="1ZL-eY-RUV" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="XSB-Sg-jVC"/>
+                <constraint firstItem="8mX-wq-fih" firstAttribute="leading" secondItem="ZIm-TK-0fo" secondAttribute="trailing" constant="8" id="YZ2-Sj-2h0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8mX-wq-fih" secondAttribute="trailing" constant="12" id="YhK-nu-Olm"/>
+                <constraint firstItem="ZIm-TK-0fo" firstAttribute="top" secondItem="gfZ-la-eeS" secondAttribute="bottom" constant="4" id="b8R-Dn-Eh4"/>
+                <constraint firstItem="gfZ-la-eeS" firstAttribute="top" secondItem="lNa-bE-0Rb" secondAttribute="bottom" constant="16" id="gNo-Hn-zi1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lNa-bE-0Rb" secondAttribute="trailing" constant="16" id="iEH-97-jK9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vXQ-IX-pJp" secondAttribute="trailing" constant="16" id="nfM-2L-OuH"/>
+                <constraint firstItem="8mX-wq-fih" firstAttribute="top" secondItem="lNa-bE-0Rb" secondAttribute="bottom" constant="16" id="xNJ-Pd-RTb"/>
+                <constraint firstItem="mtN-i0-MiS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="xaZ-Oc-cXm"/>
+                <constraint firstItem="MqP-7M-LMd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="zg3-NG-y0x"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-600.5" y="119.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="RedDelete" width="36" height="36"/>
+        <image name="RedSave" width="36" height="36"/>
+        <image name="cancel-cross" width="30" height="30"/>
+        <image name="placeHolderGenral" width="256" height="256"/>
+        <image name="user" width="130" height="130"/>
+    </resources>
+</document>

@@ -1,0 +1,339 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
+  - Alamofire (4.8.1)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - ALCameraViewController (3.0.3)
+  - Cache (5.2.0)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - DatePickerDialog (2.0)
+  - DeviceKit (1.11.0)
+  - Disk (0.4.0)
+  - DLRadioButton (1.4.12)
+  - DropDown (2.3.12)
+  - DSGradientProgressView (1.0.1)
+  - Fabric (1.9.0)
+  - FaveButton (3.2.0)
+  - FileExplorer (1.0.4)
+  - Firebase/Core (5.19.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.8.0)
+  - Firebase/CoreOnly (5.19.0):
+    - FirebaseCore (= 5.4.0)
+  - Firebase/Messaging (5.19.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.4.0)
+  - FirebaseAnalytics (5.8.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (5.4.0):
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.8.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseMessaging (3.4.0):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/Reachability (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+    - Protobuf (~> 3.1)
+  - Fusuma (1.3.3)
+  - GoogleAppMeasurement (5.8.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleMaps (3.0.3):
+    - GoogleMaps/Maps (= 3.0.3)
+  - GoogleMaps/Base (3.0.3)
+  - GoogleMaps/Maps (3.0.3):
+    - GoogleMaps/Base
+  - GooglePlaces (3.0.3):
+    - GoogleMaps/Base (= 3.0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.5.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.5.0)
+  - GoogleUtilities/Logger (5.5.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.5.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.5.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.5.0)"
+  - GoogleUtilities/Reachability (5.5.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.5.0):
+    - GoogleUtilities/Logger
+  - Graph (2.2.2)
+  - Hero (1.4.0)
+  - IGListKit (3.4.0):
+    - IGListKit/Default (= 3.4.0)
+  - IGListKit/Default (3.4.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.4.0)
+  - ImagePicker (3.1.0)
+  - ImageScrollView (1.8)
+  - Imaginary (4.2.0):
+    - Cache (~> 5.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - Kingfisher (5.2.0)
+  - KMPlaceholderTextView (1.4.0)
+  - Lightbox (2.3.0):
+    - Imaginary (~> 4.0)
+  - MarqueeLabel/Swift (3.2.1)
+  - Material (2.16.4):
+    - Material/Core (= 2.16.4)
+  - Material/Core (2.16.4):
+    - Motion (~> 1.4.3)
+  - MIBadgeButton (0.0.7)
+  - MIBadgeButton-Swift (0.5)
+  - Motion (1.4.3):
+    - Motion/Core (= 1.4.3)
+  - Motion/Core (1.4.3)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - NotificationBannerSwift (1.8.0):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.0.1)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - ObjectMapper (3.4.2)
+  - Popover (1.2.2)
+  - Protobuf (3.7.0)
+  - PullToDismiss (2.1)
+  - RecordButton (1.0.2)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SnapKit (4.0.1)
+  - SnapSliderFilters (2.0)
+  - Socket.IO-Client-Swift (14.0.0):
+    - Starscream (~> 3.0.6)
+  - Starscream (3.0.6)
+  - SwiftyJSON (4.2.0)
+  - TCPickerView (0.2.6)
+  - Toast-Swift (4.0.1)
+  - VGPlayer (0.2.0):
+    - SnapKit (~> 4.0.0)
+  - XLPagerTabStrip (8.1.1)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0
+  - Alamofire
+  - AlamofireObjectMapper
+  - ALCameraViewController (from `https://github.com/uncledoc/ALCameraViewController.git`, branch `master`)
+  - Crashlytics
+  - DatePickerDialog
+  - DeviceKit
+  - Disk (from `https://github.com/saoudrizwan/Disk.git`, branch `master`)
+  - DLRadioButton
+  - DropDown
+  - DSGradientProgressView
+  - Fabric
+  - FaveButton
+  - FileExplorer
+  - Firebase/Core
+  - Firebase/Messaging
+  - Fusuma
+  - GoogleMaps
+  - GooglePlaces
+  - Graph
+  - Hero
+  - IGListKit (from `https://github.com/Instagram/IGListKit.git`, branch `master`)
+  - ImagePicker
+  - ImageScrollView
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - KMPlaceholderTextView
+  - Lightbox
+  - Material
+  - MIBadgeButton
+  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
+  - NotificationBannerSwift
+  - NVActivityIndicatorView
+  - ObjectMapper
+  - Popover
+  - PullToDismiss
+  - RecordButton
+  - SDWebImage
+  - SnapSliderFilters
+  - Socket.IO-Client-Swift
+  - Starscream
+  - SwiftyJSON
+  - TCPickerView
+  - Toast-Swift
+  - VGPlayer
+  - XLPagerTabStrip
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - AlamofireObjectMapper
+    - Cache
+    - Crashlytics
+    - DatePickerDialog
+    - DeviceKit
+    - DLRadioButton
+    - DropDown
+    - DSGradientProgressView
+    - Fabric
+    - FaveButton
+    - FileExplorer
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - Fusuma
+    - GoogleAppMeasurement
+    - GoogleMaps
+    - GooglePlaces
+    - GoogleUtilities
+    - Graph
+    - Hero
+    - ImagePicker
+    - ImageScrollView
+    - Imaginary
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - KMPlaceholderTextView
+    - Lightbox
+    - MarqueeLabel
+    - Material
+    - MIBadgeButton
+    - Motion
+    - nanopb
+    - NotificationBannerSwift
+    - NVActivityIndicatorView
+    - ObjectMapper
+    - Popover
+    - Protobuf
+    - PullToDismiss
+    - RecordButton
+    - SDWebImage
+    - SnapKit
+    - SnapSliderFilters
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftyJSON
+    - TCPickerView
+    - Toast-Swift
+    - VGPlayer
+    - XLPagerTabStrip
+
+EXTERNAL SOURCES:
+  ALCameraViewController:
+    :branch: master
+    :git: https://github.com/uncledoc/ALCameraViewController.git
+  Disk:
+    :branch: master
+    :git: https://github.com/saoudrizwan/Disk.git
+  IGListKit:
+    :branch: master
+    :git: https://github.com/Instagram/IGListKit.git
+  MIBadgeButton-Swift:
+    :branch: master
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
+
+CHECKOUT OPTIONS:
+  ALCameraViewController:
+    :commit: 1cfaa3c5522ee47144a2593a6a1d659a61a84ad4
+    :git: https://github.com/uncledoc/ALCameraViewController.git
+  Disk:
+    :commit: c69fe2fe5d49e055d61759b185c32c5618398c6a
+    :git: https://github.com/saoudrizwan/Disk.git
+  IGListKit:
+    :commit: 4662454c4aedbc5d3bed0cb386f2ef93de40ba51
+    :git: https://github.com/Instagram/IGListKit.git
+  MIBadgeButton-Swift:
+    :commit: 3c2638d2e6e46ec2e6dd978d8ada8863df3df5e6
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  ALCameraViewController: f4a52c7b2d75df179d5e34c1c5c4a2a219c8f368
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
+  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
+  Disk: ef2956657d5bb56034b38b29b352170165226440
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+  DSGradientProgressView: 256d85dc3a92b429ace38617ceb459faec42bb41
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FaveButton: c818ab3d04d22a7615e93f08c7b35932acb3f735
+  FileExplorer: 1f7fbfa839ac391f0fb57b07eb289daa7c090a31
+  Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
+  FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
+  FirebaseInstanceID: cf488df2f4b79782f0e430b04a0e17c0aa7979b2
+  FirebaseMessaging: 2d53d08d752fbe63ce0820428d70be5ab87c11fb
+  Fusuma: 3bd08c8c5341ec60c0074fa28570fea8765966f0
+  GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
+  GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
+  GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
+  GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
+  Graph: 7bb540efc73635f727126db6236598aa472be086
+  Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
+  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
+  ImageScrollView: 82912273486297285682bdb2a806742f0d39940c
+  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
+  Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
+  MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
+  Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
+  MIBadgeButton: 7c34f180a194d152bb3817c05443eab3a01433cd
+  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
+  Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NotificationBannerSwift: 49fc4be7fabada55b189b50e72184c92edd5f7f7
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  Popover: 21e357f86d45c8d9e29a41a4adbca3664d6e511f
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  PullToDismiss: 5513d561c382d201d0e3fbbdab9a47196cf5d2e2
+  RecordButton: 76677be0f4b94f8a387454a23b4b64bd9b6c0e51
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SnapSliderFilters: 7f571683b05cf70b8d398e4a0e45691bd9f03a33
+  Socket.IO-Client-Swift: 21e6a8a23a7d367d5ddfab6cbbd3c679cf3c25d6
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  TCPickerView: 5964aa81307220bec0d126240a661d37c279e4e6
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  VGPlayer: a1787135559aa3b9201ebdc733ee283315492289
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+
+PODFILE CHECKSUM: 68c2d92dfcae909d9cffa5e859e7e9b30622fc4c
+
+COCOAPODS: 1.6.1

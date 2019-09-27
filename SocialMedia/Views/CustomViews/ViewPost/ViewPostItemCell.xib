@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+        <array key="Lato-Semibold.ttf">
+            <string>Lato-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewPostItemCell" customModule="SocialMedia" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonsContainer" destination="8Yq-Ev-Yb9" id="xjo-kU-yhF"/>
+                <outlet property="imageViewUser" destination="kCD-Y5-skP" id="Eyb-CU-MYa"/>
+                <outlet property="labelPostTime" destination="miU-eK-Tpi" id="sXJ-NY-Tlu"/>
+                <outlet property="labelUserName" destination="a76-9l-Eb7" id="Mur-5s-wBN"/>
+                <outlet property="postContainerView" destination="cP9-hF-zId" id="g1V-SN-u97"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-hF-zId">
+                    <rect key="frame" x="0.0" y="80" width="375" height="290"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="290" id="HbF-k5-dOZ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZv-L2-oMF">
+                    <rect key="frame" x="0.0" y="370" width="375" height="60"/>
+                    <subviews>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face_Android" translatesAutoresizingMaskIntoConstraints="NO" id="kCD-Y5-skP">
+                            <rect key="frame" x="8" y="8" width="44" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="IqN-Th-j8f"/>
+                                <constraint firstAttribute="width" constant="44" id="VVj-eO-dHi"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="4B0-ji-La8" appends="YES" id="HXy-pp-4Lu"/>
+                            </connections>
+                        </imageView>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a76-9l-Eb7">
+                            <rect key="frame" x="60" y="20" width="179" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="OTZ-QY-tv8" appends="YES" id="iqp-wm-MjM"/>
+                            </connections>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Time Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miU-eK-Tpi">
+                            <rect key="frame" x="247" y="20" width="120" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="Fy5-4y-dg4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="1HY-vY-olq"/>
+                        <constraint firstAttribute="trailing" secondItem="miU-eK-Tpi" secondAttribute="trailing" constant="8" id="1v5-ge-xPU"/>
+                        <constraint firstAttribute="bottom" secondItem="a76-9l-Eb7" secondAttribute="bottom" constant="19" id="4aO-8z-YPN"/>
+                        <constraint firstItem="a76-9l-Eb7" firstAttribute="top" secondItem="KZv-L2-oMF" secondAttribute="top" constant="20" id="7Ck-EK-YE0"/>
+                        <constraint firstItem="a76-9l-Eb7" firstAttribute="leading" secondItem="kCD-Y5-skP" secondAttribute="trailing" constant="8" id="Yg5-lC-thE"/>
+                        <constraint firstItem="miU-eK-Tpi" firstAttribute="top" secondItem="KZv-L2-oMF" secondAttribute="top" constant="20" id="a9s-6G-EmC"/>
+                        <constraint firstAttribute="bottom" secondItem="miU-eK-Tpi" secondAttribute="bottom" constant="19" id="dL3-fr-igf"/>
+                        <constraint firstItem="kCD-Y5-skP" firstAttribute="leading" secondItem="KZv-L2-oMF" secondAttribute="leading" constant="8" id="gVF-LV-4yb"/>
+                        <constraint firstItem="miU-eK-Tpi" firstAttribute="leading" secondItem="a76-9l-Eb7" secondAttribute="trailing" constant="8" id="kV3-6n-uVj"/>
+                        <constraint firstItem="kCD-Y5-skP" firstAttribute="top" secondItem="KZv-L2-oMF" secondAttribute="top" constant="8" id="zmL-sX-zyJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-Ev-Yb9">
+                    <rect key="frame" x="-1" y="627" width="377" height="40"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RoT-RM-vN2">
+                            <rect key="frame" x="4" y="0.0" width="369" height="50"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sql-w0-whe">
+                                    <rect key="frame" x="0.0" y="0.0" width="123" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLK-OU-wv5">
+                                            <rect key="frame" x="8" y="3" width="34" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="greylike"/>
+                                            <connections>
+                                                <action selector="onButtonLikeClicked:" destination="-1" eventType="touchUpInside" id="YT6-Lb-QRe"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkl-ol-iQy">
+                                            <rect key="frame" x="44" y="10" width="68" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="b34-oL-t2R" appends="YES" id="Yql-e2-MoK"/>
+                                            </connections>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFA-gj-wo7">
+                                    <rect key="frame" x="123" y="0.0" width="123" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdO-8f-Pct">
+                                            <rect key="frame" x="1" y="3" width="34" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="comment"/>
+                                            <connections>
+                                                <action selector="onButtonCommentClicked:" destination="-1" eventType="touchUpInside" id="3Ik-nF-oOL"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6z8-g7-oZ9">
+                                            <rect key="frame" x="43" y="10" width="68" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="Iei-fZ-zA3" appends="YES" id="u3g-2x-zaY"/>
+                                            </connections>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyh-aV-tvn">
+                                    <rect key="frame" x="246" y="0.0" width="123" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="um2-DC-LBW">
+                                            <rect key="frame" x="2" y="3" width="34" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="share"/>
+                                            <connections>
+                                                <action selector="oButtonShareClicked:" destination="-1" eventType="touchUpInside" id="svZ-bd-tdA"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9GD-MP-5Px">
+                                            <rect key="frame" x="44" y="10" width="72" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="0xJ-vy-Zg5" appends="YES" id="IbI-ak-cr8"/>
+                                            </connections>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Sql-w0-whe" firstAttribute="top" secondItem="oFA-gj-wo7" secondAttribute="top" id="FW8-SB-2Sw"/>
+                                <constraint firstItem="oFA-gj-wo7" firstAttribute="top" secondItem="iyh-aV-tvn" secondAttribute="top" id="Zn0-Xe-aJe"/>
+                                <constraint firstItem="Sql-w0-whe" firstAttribute="top" secondItem="RoT-RM-vN2" secondAttribute="top" id="vve-PP-OD5"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="RoT-RM-vN2" firstAttribute="centerX" secondItem="8Yq-Ev-Yb9" secondAttribute="centerX" id="4dr-fr-byd"/>
+                        <constraint firstAttribute="bottom" secondItem="RoT-RM-vN2" secondAttribute="bottom" constant="-10" id="58w-jl-olb"/>
+                        <constraint firstItem="RoT-RM-vN2" firstAttribute="leading" secondItem="8Yq-Ev-Yb9" secondAttribute="leading" constant="4" id="O5h-wt-cbQ"/>
+                        <constraint firstAttribute="height" constant="40" id="cak-BU-qq7"/>
+                        <constraint firstItem="RoT-RM-vN2" firstAttribute="top" secondItem="8Yq-Ev-Yb9" secondAttribute="top" id="wJI-My-3fF"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KZv-L2-oMF" secondAttribute="trailing" id="8sa-Dn-3oQ"/>
+                <constraint firstAttribute="bottom" secondItem="8Yq-Ev-Yb9" secondAttribute="bottom" id="NHe-xu-uEq"/>
+                <constraint firstItem="KZv-L2-oMF" firstAttribute="top" secondItem="cP9-hF-zId" secondAttribute="bottom" id="Ti9-ZZ-MzY"/>
+                <constraint firstAttribute="trailing" secondItem="8Yq-Ev-Yb9" secondAttribute="trailing" constant="-1" id="apU-R7-a4s"/>
+                <constraint firstItem="8Yq-Ev-Yb9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-1" id="axf-4D-swU"/>
+                <constraint firstAttribute="trailing" secondItem="cP9-hF-zId" secondAttribute="trailing" id="mpZ-hB-3e8"/>
+                <constraint firstItem="KZv-L2-oMF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tdu-05-MfE"/>
+                <constraint firstItem="cP9-hF-zId" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tpP-iu-aPF"/>
+                <constraint firstItem="cP9-hF-zId" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="yXe-uQ-FOG"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="-382.5" y="5.5"/>
+        </view>
+        <tapGestureRecognizer id="4B0-ji-La8">
+            <connections>
+                <action selector="onFriendProfileTapped:" destination="-1" id="Xyo-gi-1VD"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="OTZ-QY-tv8">
+            <connections>
+                <action selector="onFriendProfileTapped:" destination="-1" id="GdO-hb-zZ0"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="b34-oL-t2R">
+            <connections>
+                <action selector="onLikeTapped:" destination="-1" id="UFo-LO-cWh"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="Iei-fZ-zA3">
+            <connections>
+                <action selector="onCommentTapped:" destination="-1" id="1LE-Yf-q4u"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="0xJ-vy-Zg5">
+            <connections>
+                <action selector="onShareTapped:" destination="-1" id="5Nd-QC-tcm"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="comment" width="24" height="24"/>
+        <image name="face_Android" width="400" height="400"/>
+        <image name="greylike" width="24" height="24"/>
+        <image name="share" width="24" height="24"/>
+    </resources>
+</document>
